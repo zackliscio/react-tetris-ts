@@ -1,0 +1,56 @@
+/********** Range Input Styles **********/
+/*Range Reset*/
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Removes default focus */
+.range:focus {
+  outline: none;
+}
+
+/***** Chrome, Safari, Opera and Edge Chromium styles *****/
+/* slider track */
+.range::-webkit-slider-runnable-track {
+  @apply bg-background rounded-xl h-4;
+}
+
+/* slider thumb */
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  transform: translateY(-0.25rem);
+
+  /*custom styles*/
+  @apply bg-shape_z w-6 h-6 rounded-full;
+}
+
+.range:focus::-webkit-slider-thumb {
+  border: 1px dashed transparent;
+  outline: 2px dotted theme('colors.shape_t');
+  outline-offset: 3px;
+}
+
+/******** Firefox styles ********/
+/* slider track */
+.range::-moz-range-track {
+  @apply bg-background rounded-xl h-4;
+}
+
+/* slider thumb */
+.range::-moz-range-thumb {
+  border: none; /*Removes extra border that FF applies*/
+
+  /*custom styles*/
+  @apply bg-shape_z w-6 h-6 rounded-full;
+}
+
+.range:focus::-moz-range-thumb {
+  border: 1px dashed transparent;
+  outline: 2px dotted theme('colors.shape_t');
+  outline-offset: 3px;
+}

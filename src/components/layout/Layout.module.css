@@ -1,0 +1,31 @@
+.layout {
+  min-height: var(--layout_min-h);
+  min-width: 360px;
+}
+
+@media (min-width: 768px), (orientation: landscape) {
+  .layoutBar.layoutBar {
+    display: none;
+  }
+  .layoutContent.layoutContent {
+    padding: var(--padding);
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px), (orientation: portrait) {
+  .layoutBar.layoutBar {
+    display: flex;
+    flex: 1;
+    max-height: 6em;
+  }
+  .layoutContent.layoutContent {
+    justify-content: center;
+    width: 100%;
+    /* align-items: flex-end; */
+  }
+  .left.left,
+  .right.right {
+    display: none;
+  }
+}

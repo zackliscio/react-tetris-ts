@@ -1,0 +1,71 @@
+import { Board } from '@/components/board/Board';
+import { TETRIS_STATUS } from '@/constants/game';
+import { useGameContext } from '@/context/game/Game.utils';
+import { GameKeyboardEffects } from '@/sections/game-effects/GameKeyboardEffects';
+import { GameTick } from '@/sections/game-effects/GameTick';
+import { getRowIndexesMultiple } from '@/utils/board';
+import { getShapeClassName, isShapeInvalid, recalculateShape } from '@/utils/shape';
+import { useMemo } from 'react';
+
+export function BoardGame() {
+  const { state } = useGameContext();
+  const isPlaying = state.status === TETRIS_STATUS.PLAYING;
+
+  const { shape, placed, rotate, rowsFull, x, y } = state.game || {};
+
+  const classNames = useMemo(() => {
+    if (
+      !shape ||
+      !placed ||
+      typeof rotate !== 'number' ||
+      typeof x !== 'number' ||
+      typeof y !== 'number'
+    ) {
+      return undefined;
+    }
+
+    const result: string[] = [];
+
+    // Placed
+    placed.forEach((cell, i) => {
+      if (cell) {
+        const className = getShapeClassName(cell);
+        if (className) result[i] = className;
+      }
+    });
+
+    // Current shape
+    const coordsCurrent = recalculateShape(shape, rotate, x, y);
+    const isInvalid = isShapeInvalid(coordsCurrent, placed);
+    coordsCurrent.forEach((coord) => {
+      result[coord] = isInvalid ? 'bg-text cell-initial' : getShapeClassName(shape);
+    });
+
+    // Cleared
+    const cleared = rowsFull ? getRowIndexesMultiple(rowsFull) : [];
+    cleared.forEach((coord) => {
+      result[coord] = 'bg-text';
+    });
+
+    return result;
+  }, [shape, placed, rotate, rowsFull, x, y]);
+
+  return (
+    <>
+      {isPlaying && (
+        <>
+          <GameTick />
+          <GameKeyboardEffects />
+        </>
+      )}
+      <div className="absolute inset-0 bg-board" />
+      <Board
+        classNames={classNames}
+        id="game"
+        isRelative
+        isVisible
+        isTransparent={Boolean(state.status === TETRIS_STATUS.PAUSED || state.game?.isFinished)}
+      />
+    </>
+  );
+}

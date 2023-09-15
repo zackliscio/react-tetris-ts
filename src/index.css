@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cell-initial {
+  opacity: 0.8;
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    theme('colors.board') 0,
+    theme('colors.board') 2px,
+    theme('colors.button') 0,
+    theme('colors.button') 50%
+  );
+}
+
+svg {
+  @apply fill-current;
+}
+
+*:focus {
+  outline: 2px dotted;
+  outline-color: theme('colors.outline');
+  outline-offset: 3px;
+  @apply rounded-md;
+}
+
+@media (max-height: 660px) {
+  .translate-y-screen {
+    transform: translateY(660px);
+  }
+}

@@ -1,11 +1,10 @@
+import { GAME_ACTION } from '@/context/Context.actionTypes';
+import { useGameTickSpeed, useTetrisContext } from '@/context/Context.utils';
 import { useEffect, useRef } from 'react';
 
-import { GAME_ACTION } from '@/context/game/Game.actionTypes';
-import { useGameContext, useGameTickSpeed } from '@/context/game/Game.utils';
-
 export function GameTick() {
-  const { actions } = useGameContext();
-  const tick = useRef(actions[GAME_ACTION.TICK]);
+  const { dispatch } = useTetrisContext();
+  const tick = useRef(() => dispatch({ type: GAME_ACTION.TICK }));
   const ms = useGameTickSpeed();
 
   const interval = useRef<NodeJS.Timeout>();

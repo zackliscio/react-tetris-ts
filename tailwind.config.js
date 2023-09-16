@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import containerQueries from '@tailwindcss/container-queries';
 
 export default {
   content: [
@@ -57,6 +58,7 @@ export default {
       height: {
         '3per': '3%',
         '4per': '4%',
+        '4.5per': '4.6%',
         '5per': '5%',
         '7per': '7%',
         '8per': '8%',
@@ -64,6 +66,7 @@ export default {
         '80per': '80%',
       },
       minHeight: {
+        '1.25': '1.25em',
         '1.5': '1.5em'
       },
       translate: {
@@ -71,6 +74,8 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    containerQueries,
+  ],
 }
 

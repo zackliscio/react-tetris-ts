@@ -1,11 +1,12 @@
 import { TETRIS_AREA } from '@/constants/board';
 import { EDGE } from '@/constants/shape';
-import { BoardRowCell } from '@/context/game/Game.types';
+import { BoardRowCell } from '@/context/Context.types';
 
 const { WIDTH, HEIGHT } = TETRIS_AREA;
 const WIDTH_PADDED = WIDTH + 2;
 
 /* Indexes */
+
 function getFirstRowIndex(row: number, withEdge = true) {
   let result = row * WIDTH_PADDED;
   if (!withEdge) result = result + 1;

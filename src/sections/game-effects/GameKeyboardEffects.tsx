@@ -1,14 +1,17 @@
 import { KEYS_BOTTOM, KEYS_LEFT, KEYS_PAUSE, KEYS_RIGHT, KEYS_ROTATE } from '@/constants/keys';
-import { GAME_ACTION } from '@/context/game/Game.actionTypes';
-import { useGameContext } from '@/context/game/Game.utils';
+import { GAME_ACTION } from '@/context/Context.actionTypes';
+import { useTetrisContext } from '@/context/Context.utils';
+
 import { useEffect, useRef } from 'react';
 
+const { MOVE, ROTATE, SET_DROP, TOGGLE_PAUSE } = GAME_ACTION;
+
 export function GameKeyboardEffects() {
-  const { actions } = useGameContext();
-  const move = useRef(actions[GAME_ACTION.MOVE]);
-  const pauseGame = useRef(actions[GAME_ACTION.TOGGLE_PAUSE]);
-  const rotate = useRef(actions[GAME_ACTION.ROTATE]);
-  const setDrop = useRef(actions[GAME_ACTION.SET_DROP]);
+  const { dispatch } = useTetrisContext();
+  const move = useRef((payload: number) => dispatch({ type: MOVE, payload }));
+  const pauseGame = useRef(() => dispatch({ type: TOGGLE_PAUSE }));
+  const rotate = useRef(() => dispatch({ type: ROTATE }));
+  const setDrop = useRef((payload: boolean) => dispatch({ type: SET_DROP, payload }));
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {

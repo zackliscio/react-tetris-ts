@@ -1,13 +1,8 @@
 .board {
   @apply h-full;
+  min-width: 15em;
 }
 .board_cell {
   height: 5%;
-  min-height: 1.5em;
-}
-
-@media (max-width: 768px) {
-  .board_cell {
-    height: 4.5vh;
-  }
+  min-height: 1.25em;
 }

@@ -14,7 +14,7 @@ export function Range(props: {
     <LayoutForm label={props.label}>
       <div className="flex items-center gap-4 w-full">
         <input
-          className={['flex-1', styles.range].join(' ')}
+          className={['flex-1', styles.range, 'glob-range'].join(' ')}
           value={props.value}
           type="range"
           min={props.min}

@@ -1,6 +1,6 @@
 import { TETRIS_AREA } from '@/constants/board';
 import { TETRIS_SHAPE_PARAMS } from '@/constants/shape';
-import { BoardRowCell, Edge, Shape, ShapeInitial } from '@/context/game/Game.types';
+import { BoardRowCell, Edge, Shape, ShapeInitial } from '@/context/Context.types';
 
 const WIDTH_PADDED = TETRIS_AREA.WIDTH + 2;
 const MAX_COORD = WIDTH_PADDED * TETRIS_AREA.HEIGHT;

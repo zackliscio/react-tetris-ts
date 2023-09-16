@@ -3,7 +3,23 @@
   min-width: 360px;
 }
 
-@media (min-width: 768px), (orientation: landscape) {
+:global(.layout-thin .glob-board_cell) {
+  height: 4.5%;
+}
+:global(.layout-thin .glob-board.translate-y-0) {
+  transform: translateY(8.75vh);
+}
+:global(.layout-thin .glob-game-board-bg) {
+  display: none;
+}
+:global(.layout-thin .glob-range::-webkit-slider-runnable-track) {
+  @apply bg-board;
+}
+:global(.layout-thin .glob-range::-moz-range-track) {
+  @apply bg-board;
+}
+
+@media (orientation: landscape) {
   .layoutBar.layoutBar {
     display: none;
   }
@@ -13,7 +29,7 @@
   }
 }
 
-@media (max-width: 768px), (orientation: portrait) {
+@media (orientation: portrait) {
   .layoutBar.layoutBar {
     display: flex;
     flex: 1;
@@ -22,7 +38,7 @@
   .layoutContent.layoutContent {
     justify-content: center;
     width: 100%;
-    /* align-items: flex-end; */
+    flex: 1;
   }
   .left.left,
   .right.right {

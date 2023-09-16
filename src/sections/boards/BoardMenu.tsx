@@ -1,4 +1,3 @@
-import { Board } from '@/components/board/Board';
 import { Button } from '@/components/button/Button';
 import { LayoutForm } from '@/components/layout-form/LayoutForm';
 import { Range } from '@/components/range/Range';
@@ -6,26 +5,34 @@ import { Score } from '@/components/score/Score';
 import { ThemeSwitchButton } from '@/components/theme-switch-button/ThemeSwitchButton';
 import { THEME_MODE } from '@/constants/colors';
 import { LEVEL_MAX, LEVEL_MIN, ROWS_MAX, ROWS_MIN, TETRIS_STATUS } from '@/constants/game';
-import { useConfigContext } from '@/context/config/Config.utils';
-import { GAME_ACTION } from '@/context/game/Game.actionTypes';
-import { useGameContext } from '@/context/game/Game.utils';
+import { GAME_ACTION } from '@/context/Context.actionTypes';
+import { useTetrisContext } from '@/context/Context.utils';
 import { IconBriefcase } from '@/icons/IconBriefcase';
 import { IconTetris } from '@/icons/IconTetris';
 
-export function BoardMenu() {
-  const { state, actions } = useGameContext();
-  const startCountdown = actions[GAME_ACTION.START_COUNTDOWN];
-  const setInitialLevel = actions[GAME_ACTION.INITIAL_LEVEL];
-  const setInitialRows = actions[GAME_ACTION.INITIAL_ROWS];
-  const isFinished = Boolean(state.game?.isFinished);
-  const isResumable = state.game && !isFinished;
+const { INITIAL_LEVEL, INITIAL_ROWS, START_COUNTDOWN } = GAME_ACTION;
 
-  const config = useConfigContext();
+export function BoardMenu() {
+  const { state, dispatch } = useTetrisContext();
+  const { game, config } = state;
   const { action, i18N } = config;
+  const isFinished = Boolean(game?.isFinished);
+  const isResumable = game && !isFinished;
+  const startCountdown = () => dispatch({ type: START_COUNTDOWN });
+  const setInitialLevel = (payload: number) => dispatch({ type: INITIAL_LEVEL, payload });
+  const setInitialRows = (payload: number) => dispatch({ type: INITIAL_ROWS, payload });
 
   return (
-    <Board id="menu" isVisible={state.status !== TETRIS_STATUS.PLAYING || isFinished}>
-      <div className="flex flex-col md:gap-8 gap-6">
+    <div
+      className={[
+        'absolute top-0 left-0 w-full h-full',
+        'flex items-center justify-center',
+        state.status === TETRIS_STATUS.PLAYING && !isFinished && 'hidden',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      <div className={['flex flex-col', '@md/layout:gap-8 gap-6'].filter(Boolean).join(' ')}>
         <Score />
         <Button icon={<IconTetris />} onClick={startCountdown}>
           {isResumable ? i18N.menu.resume : i18N.menu.start}
@@ -36,14 +43,14 @@ export function BoardMenu() {
               label={i18N.menu.initial.level}
               min={LEVEL_MIN}
               max={LEVEL_MAX}
-              value={state.config.initialLevel}
+              value={state.gameSetup.initialLevel}
               onChange={setInitialLevel}
             />
             <Range
               label={i18N.menu.initial.rows}
               min={ROWS_MIN}
               max={ROWS_MAX}
-              value={state.config.initialRows}
+              value={state.gameSetup.initialRows}
               onChange={setInitialRows}
             />
           </>
@@ -61,6 +68,6 @@ export function BoardMenu() {
           </Button>
         )}
       </div>
-    </Board>
+    </div>
   );
 }

@@ -19,6 +19,7 @@ export function Button(
     className?: string;
     href?: string;
     icon?: JSX.Element;
+    isSmall?: boolean;
     onClick?: () => void;
   },
 ) {
@@ -34,7 +35,17 @@ export function Button(
         ].join(' ')}
       >
         {props.icon && <span className="flex-shrink-0 w-8 h-8">{props.icon}</span>}
-        <span className="text-xl md:text-2xl font-bold whitespace-nowrap">{props.children}</span>
+        <span
+          className={[
+            'font-bold whitespace-nowrap',
+            !props.isSmall && 'text-xl @md/layout:text-2xl',
+            props.isSmall && 'text-sm',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+        >
+          {props.children}
+        </span>
       </div>
     </ButtonWrap>
   );

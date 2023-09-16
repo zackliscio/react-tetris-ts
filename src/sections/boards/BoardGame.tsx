@@ -1,14 +1,16 @@
-import { Board } from '@/components/board/Board';
-import { TETRIS_STATUS } from '@/constants/game';
-import { useGameContext } from '@/context/game/Game.utils';
-import { GameKeyboardEffects } from '@/sections/game-effects/GameKeyboardEffects';
-import { GameTick } from '@/sections/game-effects/GameTick';
-import { getRowIndexesMultiple } from '@/utils/board';
-import { getShapeClassName, isShapeInvalid, recalculateShape } from '@/utils/shape';
 import { useMemo } from 'react';
 
+import { Board } from '@/components/board/Board';
+import { TETRIS_STATUS } from '@/constants/game';
+import { useTetrisContext } from '@/context/Context.utils';
+import { GameKeyboardEffects } from '@/sections/game-effects/GameKeyboardEffects';
+import { GameTick } from '@/sections/game-effects/GameTick';
+import { GameSwipable } from '@/sections/game-effects/GameSwipable';
+import { getRowIndexesMultiple } from '@/utils/board';
+import { getShapeClassName, isShapeInvalid, recalculateShape } from '@/utils/shape';
+
 export function BoardGame() {
-  const { state } = useGameContext();
+  const { state } = useTetrisContext();
   const isPlaying = state.status === TETRIS_STATUS.PLAYING;
 
   const { shape, placed, rotate, rowsFull, x, y } = state.game || {};
@@ -58,14 +60,14 @@ export function BoardGame() {
           <GameKeyboardEffects />
         </>
       )}
-      <div className="absolute inset-0 bg-board" />
       <Board
         classNames={classNames}
-        id="game"
+        isAlignBottom
         isRelative
         isVisible
         isTransparent={Boolean(state.status === TETRIS_STATUS.PAUSED || state.game?.isFinished)}
       />
+      {isPlaying && <GameSwipable />}
     </>
   );
 }

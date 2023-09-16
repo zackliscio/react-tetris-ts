@@ -1,14 +1,19 @@
 import { THEME_MODE } from '@/constants/colors';
-import { useConfigContext } from '@/context/config/Config.utils';
+import { CONFIG_ACTION } from '@/context/Context.actionTypes';
+import { ThemeModePreference } from '@/context/Context.types';
+import { useTetrisContext } from '@/context/Context.utils';
 import { IconComputer } from '@/icons/IconComputer';
 import { IconMoon } from '@/icons/IconMoon';
 import { IconSun } from '@/icons/IconSun';
 
-export function ThemeSwitchButton(props: {
-  theme: typeof THEME_MODE.DARK | typeof THEME_MODE.LIGHT | typeof THEME_MODE.SYSTEM;
-}) {
-  const { theme, setThemeMode } = useConfigContext();
+export function ThemeSwitchButton(props: { theme: ThemeModePreference }) {
+  const { state, dispatch } = useTetrisContext();
+  const { theme } = state;
   const isActive = theme.user === props.theme;
+
+  function onChangeTheme() {
+    dispatch({ type: CONFIG_ACTION.THEME_MODE, payload: props.theme });
+  }
 
   let icon: JSX.Element;
   switch (props.theme) {
@@ -33,7 +38,7 @@ export function ThemeSwitchButton(props: {
         isActive ? 'text-shape_z' : 'text-text',
         isActive ? 'opacity-100' : 'opacity-50',
       ].join(' ')}
-      onClick={() => setThemeMode(props.theme)}
+      onClick={() => onChangeTheme()}
     >
       {icon}
     </button>

@@ -1,4 +1,4 @@
-import { Shape } from '@/context/game/Game.types';
+import { Shape } from '@/context/Context.types';
 
 import { getShapeParams } from './shape';
 

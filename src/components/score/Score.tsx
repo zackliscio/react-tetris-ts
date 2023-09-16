@@ -1,15 +1,13 @@
 import { LayoutNumber } from '@/components/layout-number/LayoutNumber';
-import { useConfigContext } from '@/context/config/Config.utils';
-import { useGameContext } from '@/context/game/Game.utils';
+import { useTetrisContext } from '@/context/Context.utils';
 import { getScore } from '@/utils/score';
 
 export function Score(props: { isSmall?: boolean }) {
-  const { i18N } = useConfigContext();
-  const { state } = useGameContext();
+  const { state } = useTetrisContext();
+  const { config, game, gameSetup } = state;
+  const { i18N } = config;
 
-  const score = state.game
-    ? getScore(state.game.score, state.config.initialLevel, state.config.initialRows)
-    : 0;
+  const score = game ? getScore(game.score, gameSetup.initialLevel, gameSetup.initialRows) : 0;
 
   return (
     <LayoutNumber

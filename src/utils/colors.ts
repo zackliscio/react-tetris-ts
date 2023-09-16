@@ -7,10 +7,12 @@ import {
   Theme,
   ThemeColor,
 } from '@/constants/colors';
-import { useConfigContext } from '@/context/config/Config.utils';
+import { useTetrisContext } from '@/context/Context.utils';
 
 export function useGetColor() {
-  const { theme, colors } = useConfigContext();
+  const { state } = useTetrisContext();
+  const { theme } = state;
+  const { colors } = state.config;
 
   function getColor(color: ThemeColor) {
     let themeDefault: Theme;
@@ -44,11 +46,11 @@ export function useGetColor() {
 }
 
 export function useBackgroundDark() {
-  const { colors } = useConfigContext();
-  return colors?.dark?.background || BG_DARK;
+  const { state } = useTetrisContext();
+  return state.config.colors?.dark?.background || BG_DARK;
 }
 
 export function useBackgroundLight() {
-  const { colors } = useConfigContext();
-  return colors?.light?.background || BG_LIGHT;
+  const { state } = useTetrisContext();
+  return state.config.colors?.light?.background || BG_LIGHT;
 }

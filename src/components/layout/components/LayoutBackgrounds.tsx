@@ -1,11 +1,12 @@
 import { THEME_MODE } from '@/constants/colors';
-import { useConfigContext } from '@/context/config/Config.utils';
+import { useTetrisContext } from '@/context/Context.utils';
 
 export function LayoutBackgrounds() {
-  const config = useConfigContext();
-  const { theme } = config;
-  const isDark = theme.selected === THEME_MODE.DARK;
-  const { isChanged } = config.theme;
+  const { state } = useTetrisContext();
+  const { theme } = state;
+  const { isChanged, selected } = theme;
+
+  const isDark = selected === THEME_MODE.DARK;
 
   return (
     <>

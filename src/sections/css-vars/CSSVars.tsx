@@ -1,9 +1,9 @@
 import { Theme } from '@/constants/colors';
-import { useConfigContext } from '@/context/config/Config.utils';
+import { useTetrisContext } from '@/context/Context.utils';
 import { useBackgroundDark, useBackgroundLight, useGetColor } from '@/utils/colors';
 
 export function CSSVars() {
-  const context = useConfigContext();
+  const { state } = useTetrisContext();
   const getColor = useGetColor();
   const bgLight = useBackgroundLight();
   const bgDark = useBackgroundDark();
@@ -11,7 +11,6 @@ export function CSSVars() {
   const theme: Theme = {
     background: getColor('background'),
     board: getColor('board'),
-    border: getColor('border'),
     button: getColor('button'),
     button_shade: getColor('button_shade'),
     button_text: getColor('button_text'),
@@ -33,7 +32,6 @@ export function CSSVars() {
             --background_dark: ${bgDark};
             --background_light: ${bgLight};
             --board: ${theme.board};
-            --border: ${theme.border};
             --button: ${theme.button};
             --button_shade: ${theme.button_shade};
             --button_text: ${theme.button_text};
@@ -46,7 +44,7 @@ export function CSSVars() {
             --shape_s: ${theme.shape_s};
             --shape_t: ${theme.shape_t};
             --shape_z: ${theme.shape_z};
-            --padding: ${context.padding};
+            --padding: ${state.config.padding};
             --layout_min-h: 640px;
         }
   `}</style>

@@ -30,3 +30,8 @@ svg {
     transform: translateY(660px);
   }
 }
+
+html,
+body {
+  overflow: hidden;
+}

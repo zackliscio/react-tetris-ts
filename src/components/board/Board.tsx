@@ -7,17 +7,19 @@ import styles from './Board.module.css';
 
 const { WIDTH, HEIGHT } = TETRIS_AREA;
 
+console.log((WIDTH + 2) * HEIGHT);
+
 export function Board(
   props: PropsWithChildren & {
     className?: string;
     classNameCell?: string;
     classNames?: string[];
     height?: number;
-    id?: string;
     isIndexShown?: boolean;
     isNoBorder?: boolean;
     isTransparent?: boolean;
     isDown?: boolean;
+    isAlignBottom?: boolean;
     isVisible?: boolean;
     isRelative?: boolean;
     width?: number;
@@ -31,6 +33,7 @@ export function Board(
     <div
       className={[
         props.className,
+        'glob-board',
         !props.isRelative && 'absolute top-0 left-0 w-full',
         props.isDown ? 'translate-y-screen' : 'translate-y-0',
         !props.isVisible && 'hidden',
@@ -40,14 +43,18 @@ export function Board(
       ]
         .filter(Boolean)
         .join(' ')}
-      id={props.id} // TODO: Remove this after debug
     >
       {[...Array(widthPadded * height)].map((_cell, i) => {
         if (isLeftEdge(i, width)) return null;
         if (isRightEdge(i, width)) return <div key={i} className="clear-both" />;
+
         return (
           <div
-            className={['relative float-left aspect-square', styles.board_cell].join(' ')}
+            className={[
+              'relative float-left aspect-square',
+              'h-5per min-h-1.25',
+              'glob-board_cell',
+            ].join(' ')}
             key={i}
           >
             <span

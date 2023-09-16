@@ -19,14 +19,3 @@ export const TETRIS_SPEED_INITIAL = 500;
 export const TETRIS_SPEED_DROP = 50;
 export const TETRIS_ROWS_IN_LEVEL = 15;
 export const TETRIS_SPEED_LEVEL_INCREASE = 27;
-
-export const GREETING = [
-  `
-███████████████████
-█─█─█▄─▄▄─█▄─█─▄█░█
-█─▄─██─▄█▀██▄─▄██▄█
-▀▄▀▄▀▄▄▄▄▄▀▀▄▄▄▀▀▄▀
-`,
-  "My name is 𝗣𝗲𝘁𝗿 and I'm looking for work.\n",
-  '🌐 www.cibulka.codes\n📧 cibulka.me@gmail.com',
-].join('\n');

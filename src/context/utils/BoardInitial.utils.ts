@@ -1,8 +1,8 @@
 import { TETRIS_AREA } from '@/constants/board';
+import { EDGE, SHAPE_INITIAL } from '@/constants/shape';
 import { getRandomNumberInRange, getShuffledArray } from '@/utils/random';
 
-import { BoardRowCell, BoardRowCellInitial, Shape } from '../Game.types';
-import { EDGE, SHAPE_INITIAL } from '@/constants/shape';
+import { BoardRowCell, BoardRowCellInitial, Shape } from '../Context.types';
 
 const { WIDTH, HEIGHT } = TETRIS_AREA;
 
@@ -50,6 +50,7 @@ export function getInitialGame(
     score: 0,
     shape: next.shape,
     x: 0,
+    xSwipeRef: null,
     y: 0,
   };
 }

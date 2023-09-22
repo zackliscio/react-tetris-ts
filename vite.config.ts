@@ -1,10 +1,12 @@
 import path from 'path';
 import { defineConfig } from 'vite';
+import tailwindcss from 'tailwindcss';
 import react from '@vitejs/plugin-react';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), cssInjectedByJsPlugin()],
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
@@ -25,6 +27,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/src',
+    },
+  },
+  css: {
+    postcss: {
+      plugins: [tailwindcss('./tailwind.config.js')],
     },
   },
 });

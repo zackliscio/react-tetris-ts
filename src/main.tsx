@@ -1,3 +1,3 @@
-import App from './App';
+import Tetris from './App';
 
-export { App };
+export { Tetris };

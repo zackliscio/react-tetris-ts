@@ -7,6 +7,8 @@ import { AppConfig } from '@/context/Context.types';
 import { Boards } from '@/sections/boards/Boards';
 import { CSSVars } from '@/sections/css-vars/CSSVars';
 
+import './index.css';
+
 function App(props: { config?: Partial<AppConfig> }) {
   useEffect(() => console.log(GREETING), []);
 

@@ -1,6 +1,5 @@
 import { TETRIS_STATUS, TetrisStatus } from '@/constants/game';
 import { TETRIS_SHAPE_PARAMS } from '@/constants/shape';
-import { getShapeParams, isShapeInvalid, recalculateShape } from '@/utils/shape';
 import { getRandomArrayValue, getRandomRotate } from '@/utils/random';
 
 import { onTick } from './reducer/tick';

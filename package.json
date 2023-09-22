@@ -2,6 +2,7 @@
   "name": "react-tetris-ts",
   "version": "0.0.1",
   "type": "module",
+  "main": "dist/main.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

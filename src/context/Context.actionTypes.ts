@@ -1,4 +1,4 @@
-import { TetrisThemeModePreference } from '@/types/public';
+import { TetrisThemeModePreference, TetrisThemeModeSelected } from '@/types/public';
 
 export const GAME_ACTION = {
   INITIAL_LEVEL: 'INITIAL_LEVEL',
@@ -17,6 +17,7 @@ export const GAME_ACTION = {
 
 export const CONFIG_ACTION = {
   THEME_MODE: 'THEME_MODE',
+  THEME_MODE_SYSTEM: 'THEME_MODE_SYSTEM',
 } as const;
 
 export type ActionMove = { type: typeof GAME_ACTION.MOVE; payload: number };
@@ -35,4 +36,5 @@ export type Action =
   | { type: typeof GAME_ACTION.START_COUNTDOWN }
   | { type: typeof GAME_ACTION.TICK }
   | { type: typeof GAME_ACTION.TOGGLE_PAUSE }
-  | { type: typeof CONFIG_ACTION.THEME_MODE; payload: TetrisThemeModePreference };
+  | { type: typeof CONFIG_ACTION.THEME_MODE; payload: TetrisThemeModePreference }
+  | { type: typeof CONFIG_ACTION.THEME_MODE_SYSTEM; payload: TetrisThemeModeSelected };

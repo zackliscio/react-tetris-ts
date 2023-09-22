@@ -2,7 +2,6 @@ import { PropsWithChildren, useReducer } from 'react';
 
 import { TETRIS_STATUS, TetrisStatus } from '@/constants/game';
 import { TETRIS_SHAPE_PARAMS } from '@/constants/shape';
-import { TETRIS_THEME_MODE } from '@/constants/theme';
 import {
   TetrisAppConfig,
   TetrisThemeModePreference,
@@ -58,9 +57,8 @@ export function TetrisContextWrap(
   const { shape: shapeNextInitial } = getRandomArrayValue(TETRIS_SHAPE_PARAMS);
 
   const config = getDefaultConfig(props.config);
-  const themeSystem = useDarkMode();
 
-  const initialState = {
+  const initialState: ContextValue = {
     config,
     game: null,
     gameSetup: {
@@ -75,17 +73,17 @@ export function TetrisContextWrap(
     status: TETRIS_STATUS.IDLE,
     theme: {
       user: config?.theme,
-      selected: config.theme === TETRIS_THEME_MODE.SYSTEM ? themeSystem : config.theme,
-      system: themeSystem,
+      selected: config?.theme,
+      system: undefined,
       isChanged: false,
     },
   };
 
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
+  useDarkMode(dispatch);
+
   return (
-    <TetrisContext.Provider value={{ state, dispatch }}>
-      {themeSystem ? props.children : null}
-    </TetrisContext.Provider>
+    <TetrisContext.Provider value={{ state, dispatch }}>{props.children}</TetrisContext.Provider>
   );
 }

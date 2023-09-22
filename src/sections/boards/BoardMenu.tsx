@@ -32,7 +32,12 @@ export function BoardMenu() {
         .filter(Boolean)
         .join(' ')}
     >
-      <div className={['flex flex-col', '@md/layout:gap-8 gap-6'].filter(Boolean).join(' ')}>
+      <div className="absolute inset-0 bg-board opacity-80" />
+      <div
+        className={['relative', 'flex flex-col', '@md/layout:gap-8 gap-6']
+          .filter(Boolean)
+          .join(' ')}
+      >
         <Score />
         <Button icon={<IconTetris />} onClick={startCountdown}>
           {isResumable ? i18N.menu.resume : i18N.menu.start}

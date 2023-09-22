@@ -9,6 +9,8 @@ import { TetrisAppConfig } from '@/types/public';
 
 import './index.css';
 
+// import { TestLayout } from './components/test-layout/TestLayout';
+
 function App(props: { config?: Partial<TetrisAppConfig> }) {
   useEffect(() => console.log(GREETING), []);
 

@@ -27,8 +27,8 @@ export function BoardOverlay() {
     <Board
       className="bg-background"
       classNameCell="bg-board"
-      isAlignBottom
-      isVisible
+      // isAlignBottom
+      // isVisible
       isDown={!isCountdown}
     >
       {isCountdown && <span className="text-6xl">{countdown.number}</span>}

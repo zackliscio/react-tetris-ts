@@ -1,74 +1,51 @@
-import { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import { PropsWithChildren, useRef } from 'react';
 
 import { Level } from '@/components/level/Level';
-import { Score } from '@/components/score/Score';
 import { Next } from '@/components/next/Next';
+import { Score } from '@/components/score/Score';
+import { TETRIS_AREA } from '@/constants/board';
 
-import { LayoutTopBar } from './components/LayoutTopBar';
-import { LayoutBackgrounds } from './components/LayoutBackgrounds';
+import { useWidthIfAspectRatioNotWorking } from './Layout.utils';
 import styles from './Layout.module.css';
 
-const MIN_RATIO = 0.443;
-
 export function Layout(props: PropsWithChildren) {
-  const [isThin, setIsThin] = useState<undefined | boolean>(undefined);
-
-  const wrapEl = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    function handler() {
-      if (wrapEl.current) {
-        setIsThin(wrapEl.current.clientWidth / wrapEl.current.clientHeight <= MIN_RATIO);
-      }
-    }
-
-    handler();
-    window.addEventListener('resize', handler);
-    return () => {
-      window.removeEventListener('resize', handler);
-    };
-  }, []);
+  const ref = useRef<HTMLDivElement>(null);
+  const width = useWidthIfAspectRatioNotWorking(ref);
 
   return (
     <div
       className={[
+        'absolute inset-0 flex flex-col',
         '@container/layout',
-        'flex flex-col',
-        'absolute top-0 left-0',
-        'w-full h-full overflow-hidden',
-        'text-text bg-background_light',
-        styles.layout,
-        isThin && 'layout-thin',
-      ]
-        .filter(Boolean)
-        .join(' ')}
-      ref={wrapEl}
+        'text-text bg-background',
+      ].join(' ')}
     >
-      <LayoutBackgrounds />
-      <LayoutTopBar
-        className={['relative flex justify-between px-8 py-2', styles.layoutBar].join(' ')}
-      />
-      <div className={['flex relative overflow-hidden', styles.layoutContent].join(' ')}>
-        <div
-          className={['relative z-10', 'flex flex-1 items-center justify-center', styles.left].join(
-            ' ',
-          )}
-        >
-          <Next />
+      <div className={['flex items-center justify-between', 'px-4', styles.topBar].join(' ')}>
+        <Next height="3em" />
+        <Score isSmall />
+        <Level isSmall />
+      </div>
+      <div className={['flex flex-1', styles.wrap].join(' ')}>
+        <div className={['flex flex-1 items-center justify-center', styles.left].join(' ')}>
+          <Next height="10%" />
         </div>
-        <div className={['relative z-10 flex flex-col', styles.center].join(' ')}>
+        <div
+          className={[styles.center, 'relative'].join(' ')}
+          ref={ref}
+          style={{
+            aspectRatio: `${TETRIS_AREA.WIDTH / TETRIS_AREA.HEIGHT}`,
+            width,
+          }}
+        >
           {props.children}
         </div>
         <div
-          className={[
-            'relative z-10',
-            'flex flex-1 items-center justify-center',
-            styles.right,
-          ].join(' ')}
+          className={['flex flex-col gap-12 flex-1 items-center justify-center', styles.right].join(
+            ' ',
+          )}
         >
-          <div className="flex flex-col gap-12">
-            <Level />
-            <Score />
-          </div>
+          <Level />
+          <Score />
         </div>
       </div>
     </div>

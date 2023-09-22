@@ -1,3 +1,10 @@
+.progress {
+  top: 0.125em;
+  @apply absolute left-0 h-4;
+  @apply bg-shape_z opacity-30 rounded-md;
+  @apply pointer-events-none;
+}
+
 /********** Range Input Styles **********/
 /*Range Reset*/
 .range {
@@ -36,7 +43,7 @@
 }
 
 /******** Firefox styles ********/
-/* slider track */
+
 .range::-moz-range-track {
   @apply bg-background rounded-xl h-4;
 }

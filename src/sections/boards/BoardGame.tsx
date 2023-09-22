@@ -60,13 +60,7 @@ export function BoardGame() {
           <GameKeyboardEffects />
         </>
       )}
-      <Board
-        classNames={classNames}
-        isAlignBottom
-        isRelative
-        isVisible
-        isTransparent={Boolean(state.status === TETRIS_STATUS.PAUSED || state.game?.isFinished)}
-      />
+      <Board classNames={classNames} />
       {isPlaying && <GameSwipable />}
     </>
   );

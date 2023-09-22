@@ -38,5 +38,5 @@ export type TetrisAppConfig = {
   i18N: TetrisI18N;
   isPersisted: boolean;
   padding: string | number;
-  theme: TetrisThemeModePreference;
+  theme: TetrisThemeModeSelected;
 };

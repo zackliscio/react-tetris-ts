@@ -1,12 +1,12 @@
-import { THEME_MODE } from '@/constants/colors';
+import { TETRIS_THEME_MODE } from '@/constants/theme';
 import { CONFIG_ACTION } from '@/context/Context.actionTypes';
-import { ThemeModePreference } from '@/context/Context.types';
 import { useTetrisContext } from '@/context/Context.utils';
 import { IconComputer } from '@/icons/IconComputer';
 import { IconMoon } from '@/icons/IconMoon';
 import { IconSun } from '@/icons/IconSun';
+import { TetrisThemeModePreference } from '@/types/public';
 
-export function ThemeSwitchButton(props: { theme: ThemeModePreference }) {
+export function ThemeSwitchButton(props: { theme: TetrisThemeModePreference }) {
   const { state, dispatch } = useTetrisContext();
   const { theme } = state;
   const isActive = theme.user === props.theme;
@@ -17,13 +17,13 @@ export function ThemeSwitchButton(props: { theme: ThemeModePreference }) {
 
   let icon: JSX.Element;
   switch (props.theme) {
-    case THEME_MODE.DARK:
+    case TETRIS_THEME_MODE.DARK:
       icon = <IconMoon />;
       break;
-    case THEME_MODE.LIGHT:
+    case TETRIS_THEME_MODE.LIGHT:
       icon = <IconSun />;
       break;
-    case THEME_MODE.SYSTEM:
+    case TETRIS_THEME_MODE.SYSTEM:
       icon = <IconComputer />;
       break;
     default:

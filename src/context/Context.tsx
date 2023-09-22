@@ -1,27 +1,25 @@
-import React, { PropsWithChildren, useReducer } from 'react';
+import { PropsWithChildren, useReducer } from 'react';
 
-import { THEME_MODE } from '@/constants/colors';
 import { TETRIS_STATUS, TetrisStatus } from '@/constants/game';
 import { TETRIS_SHAPE_PARAMS } from '@/constants/shape';
+import { TETRIS_THEME_MODE } from '@/constants/theme';
+import {
+  TetrisAppConfig,
+  TetrisThemeModePreference,
+  TetrisThemeModeSelected,
+} from '@/types/public';
 import { getRandomArrayValue, getRandomRotate } from '@/utils/random';
 
 import { getDefaultConfig } from './utils/Config.utils';
 
-import { Action } from './Context.actionTypes';
 import { gameReducer } from './Context.reducer';
-import {
-  AppConfig,
-  BoardRowCell,
-  BoardRowCellInitial,
-  Shape,
-  ThemeModePreference,
-  ThemeModeSelected,
-} from './Context.types';
+import { BoardRowCell, BoardRowCellInitial, Shape } from './Context.types';
+import { TetrisContext, useDarkMode } from './Context.utils';
 
 /* Types */
 
 export type ContextValue = {
-  config: AppConfig;
+  config: TetrisAppConfig;
   game: null | {
     isDrop: boolean;
     isFinished: boolean;
@@ -45,27 +43,22 @@ export type ContextValue = {
   };
   status: TetrisStatus;
   theme: {
-    user: ThemeModePreference;
-    selected: ThemeModeSelected;
-    system: ThemeModeSelected;
+    user: TetrisThemeModePreference;
+    selected?: TetrisThemeModeSelected;
+    system?: TetrisThemeModeSelected;
     isChanged: boolean;
   };
 };
 
 /* Context */
 
-export const TetrisContext = React.createContext<{
-  state: ContextValue;
-  dispatch: React.Dispatch<Action>;
-} | null>(null);
-
-export function TetrisContextWrap(props: PropsWithChildren & { config?: Partial<AppConfig> }) {
+export function TetrisContextWrap(
+  props: PropsWithChildren & { config?: Partial<TetrisAppConfig> },
+) {
   const { shape: shapeNextInitial } = getRandomArrayValue(TETRIS_SHAPE_PARAMS);
 
   const config = getDefaultConfig(props.config);
-  const themeSystem = window.matchMedia('prefers-color-scheme: dark').matches
-    ? THEME_MODE.DARK
-    : THEME_MODE.LIGHT;
+  const themeSystem = useDarkMode();
 
   const initialState = {
     config,
@@ -82,7 +75,7 @@ export function TetrisContextWrap(props: PropsWithChildren & { config?: Partial<
     status: TETRIS_STATUS.IDLE,
     theme: {
       user: config?.theme,
-      selected: config.theme === THEME_MODE.SYSTEM ? themeSystem : config.theme,
+      selected: config.theme === TETRIS_THEME_MODE.SYSTEM ? themeSystem : config.theme,
       system: themeSystem,
       isChanged: false,
     },
@@ -91,6 +84,8 @@ export function TetrisContextWrap(props: PropsWithChildren & { config?: Partial<
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
   return (
-    <TetrisContext.Provider value={{ state, dispatch }}>{props.children}</TetrisContext.Provider>
+    <TetrisContext.Provider value={{ state, dispatch }}>
+      {themeSystem ? props.children : null}
+    </TetrisContext.Provider>
   );
 }

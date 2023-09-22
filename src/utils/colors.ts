@@ -1,37 +1,37 @@
 import {
-  BG_DARK,
-  BG_LIGHT,
-  THEME_DARK,
-  THEME_LIGHT,
-  THEME_MODE,
-  Theme,
-  ThemeColor,
-} from '@/constants/colors';
+  TETRIS_BG_DARK,
+  TETRIS_BG_LIGHT,
+  TETRIS_THEME_DARK,
+  TETRIS_THEME_LIGHT,
+  TETRIS_THEME_MODE,
+} from '@/constants/theme';
 import { useTetrisContext } from '@/context/Context.utils';
+import { TetrisTheme, TetrisThemeColor } from '@/types/public';
 
 export function useGetColor() {
   const { state } = useTetrisContext();
   const { theme } = state;
   const { colors } = state.config;
 
-  function getColor(color: ThemeColor) {
-    let themeDefault: Theme;
-    let userConfig: Partial<Theme> | null;
+  function getColor(color: TetrisThemeColor) {
+    let themeDefault: TetrisTheme;
+    let userConfig: Partial<TetrisTheme> | null;
     switch (theme.user) {
-      case THEME_MODE.LIGHT:
-        themeDefault = THEME_LIGHT;
+      case TETRIS_THEME_MODE.LIGHT:
+        themeDefault = TETRIS_THEME_LIGHT;
         userConfig = colors?.light || colors?.main || null;
         break;
-      case THEME_MODE.SYSTEM:
-        themeDefault = theme.system === THEME_MODE.LIGHT ? THEME_LIGHT : THEME_DARK;
+      case TETRIS_THEME_MODE.SYSTEM:
+        themeDefault =
+          theme.system === TETRIS_THEME_MODE.LIGHT ? TETRIS_THEME_LIGHT : TETRIS_THEME_DARK;
         userConfig =
-          (theme.system === THEME_MODE.LIGHT ? colors?.light : colors?.dark) ||
+          (theme.system === TETRIS_THEME_MODE.LIGHT ? colors?.light : colors?.dark) ||
           colors?.main ||
           null;
         break;
-      case THEME_MODE.DARK:
+      case TETRIS_THEME_MODE.DARK:
       default:
-        themeDefault = THEME_DARK;
+        themeDefault = TETRIS_THEME_DARK;
         userConfig = colors?.dark || colors?.main || null;
         break;
     }
@@ -47,10 +47,10 @@ export function useGetColor() {
 
 export function useBackgroundDark() {
   const { state } = useTetrisContext();
-  return state.config.colors?.dark?.background || BG_DARK;
+  return state.config.colors?.dark?.background || TETRIS_BG_DARK;
 }
 
 export function useBackgroundLight() {
   const { state } = useTetrisContext();
-  return state.config.colors?.light?.background || BG_LIGHT;
+  return state.config.colors?.light?.background || TETRIS_BG_LIGHT;
 }

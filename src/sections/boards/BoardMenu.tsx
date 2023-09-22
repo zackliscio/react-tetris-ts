@@ -3,8 +3,8 @@ import { LayoutForm } from '@/components/layout-form/LayoutForm';
 import { Range } from '@/components/range/Range';
 import { Score } from '@/components/score/Score';
 import { ThemeSwitchButton } from '@/components/theme-switch-button/ThemeSwitchButton';
-import { THEME_MODE } from '@/constants/colors';
 import { LEVEL_MAX, LEVEL_MIN, ROWS_MAX, ROWS_MIN, TETRIS_STATUS } from '@/constants/game';
+import { TETRIS_THEME_MODE } from '@/constants/theme';
 import { GAME_ACTION } from '@/context/Context.actionTypes';
 import { useTetrisContext } from '@/context/Context.utils';
 import { IconBriefcase } from '@/icons/IconBriefcase';
@@ -57,9 +57,9 @@ export function BoardMenu() {
         )}
         <LayoutForm label={i18N.menu.colors}>
           <div className="flex gap-4 text-text">
-            <ThemeSwitchButton theme={THEME_MODE.DARK} />
-            <ThemeSwitchButton theme={THEME_MODE.LIGHT} />
-            <ThemeSwitchButton theme={THEME_MODE.SYSTEM} />
+            <ThemeSwitchButton theme={TETRIS_THEME_MODE.DARK} />
+            <ThemeSwitchButton theme={TETRIS_THEME_MODE.LIGHT} />
+            <ThemeSwitchButton theme={TETRIS_THEME_MODE.SYSTEM} />
           </div>
         </LayoutForm>
         {action && (

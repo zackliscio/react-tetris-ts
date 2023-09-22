@@ -7,8 +7,6 @@ import styles from './Board.module.css';
 
 const { WIDTH, HEIGHT } = TETRIS_AREA;
 
-console.log((WIDTH + 2) * HEIGHT);
-
 export function Board(
   props: PropsWithChildren & {
     className?: string;

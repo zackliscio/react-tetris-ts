@@ -1,5 +1,5 @@
-import { Theme } from '@/constants/colors';
 import { useTetrisContext } from '@/context/Context.utils';
+import { TetrisTheme } from '@/types/public';
 import { useBackgroundDark, useBackgroundLight, useGetColor } from '@/utils/colors';
 
 export function CSSVars() {
@@ -8,7 +8,7 @@ export function CSSVars() {
   const bgLight = useBackgroundLight();
   const bgDark = useBackgroundDark();
 
-  const theme: Theme = {
+  const theme: TetrisTheme = {
     background: getColor('background'),
     board: getColor('board'),
     button: getColor('button'),

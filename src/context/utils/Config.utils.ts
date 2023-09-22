@@ -1,9 +1,8 @@
-import { THEME_MODE } from '@/constants/colors';
 import { i18n } from '@/constants/i18n';
+import { TETRIS_THEME_MODE } from '@/constants/theme';
+import { TetrisAppConfig } from '@/types/public';
 
-import { AppConfig } from '../Context.types';
-
-export function getDefaultConfig(config?: Partial<AppConfig>): AppConfig {
+export function getDefaultConfig(config?: Partial<TetrisAppConfig>): TetrisAppConfig {
   return {
     action: config?.action || {
       label: i18n.action,
@@ -13,6 +12,6 @@ export function getDefaultConfig(config?: Partial<AppConfig>): AppConfig {
     padding: 0,
     colors: config?.colors,
     isPersisted: true,
-    theme: config?.theme || THEME_MODE.DARK,
+    theme: config?.theme || TETRIS_THEME_MODE.DARK,
   };
 }

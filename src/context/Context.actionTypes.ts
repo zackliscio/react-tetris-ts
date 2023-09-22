@@ -1,4 +1,4 @@
-import { ThemeModePreference } from './Context.types';
+import { TetrisThemeModePreference } from '@/types/public';
 
 export const GAME_ACTION = {
   INITIAL_LEVEL: 'INITIAL_LEVEL',
@@ -35,4 +35,4 @@ export type Action =
   | { type: typeof GAME_ACTION.START_COUNTDOWN }
   | { type: typeof GAME_ACTION.TICK }
   | { type: typeof GAME_ACTION.TOGGLE_PAUSE }
-  | { type: typeof CONFIG_ACTION.THEME_MODE; payload: ThemeModePreference };
+  | { type: typeof CONFIG_ACTION.THEME_MODE; payload: TetrisThemeModePreference };

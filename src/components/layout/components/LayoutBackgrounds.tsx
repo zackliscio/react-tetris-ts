@@ -1,4 +1,4 @@
-import { THEME_MODE } from '@/constants/colors';
+import { TETRIS_THEME_MODE } from '@/constants/theme';
 import { useTetrisContext } from '@/context/Context.utils';
 
 export function LayoutBackgrounds() {
@@ -6,7 +6,7 @@ export function LayoutBackgrounds() {
   const { theme } = state;
   const { isChanged, selected } = theme;
 
-  const isDark = selected === THEME_MODE.DARK;
+  const isDark = selected === TETRIS_THEME_MODE.DARK;
 
   return (
     <>

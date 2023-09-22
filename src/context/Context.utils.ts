@@ -1,9 +1,18 @@
-import { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { TETRIS_SPEED_DROP, TETRIS_SPEED_INITIAL } from '@/constants/game';
+import { TETRIS_THEME_MODE } from '@/constants/theme';
+import { TetrisThemeModeSelected } from '@/types/public';
 import getSpeed from '@/utils/score';
 
-import { TetrisContext } from './Context';
+import { ContextValue } from './Context';
+
+import { Action } from './Context.actionTypes';
+
+export const TetrisContext = React.createContext<{
+  state: ContextValue;
+  dispatch: React.Dispatch<Action>;
+} | null>(null);
 
 export function useTetrisContext() {
   const ctx = useContext(TetrisContext);
@@ -27,4 +36,26 @@ export function useGameTickSpeed() {
   }
 
   return ms;
+}
+
+export function useDarkMode() {
+  const [themeSystem, setThemeSystem] = useState<TetrisThemeModeSelected | undefined>(undefined);
+
+  useEffect(() => {
+    const mq = window.matchMedia('prefers-color-scheme: dark');
+
+    function handler() {
+      const isDark = mq.matches;
+      setThemeSystem(isDark ? TETRIS_THEME_MODE.DARK : TETRIS_THEME_MODE.LIGHT);
+    }
+
+    handler();
+    mq.addEventListener('change', handler);
+
+    return () => {
+      mq.removeEventListener('change', handler);
+    };
+  }, []);
+
+  return themeSystem;
 }

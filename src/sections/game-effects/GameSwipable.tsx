@@ -38,6 +38,7 @@ export function GameSwipable() {
       dispatch({ type: GAME_ACTION.ROTATE });
     },
     delta: cellSize,
+    preventScrollOnSwipe: true,
   });
 
   useEffect(() => {

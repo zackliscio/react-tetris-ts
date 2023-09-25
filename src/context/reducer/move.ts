@@ -4,7 +4,7 @@ import { getShapeParams, isShapeInvalid, recalculateShape } from '@/utils/shape'
 import { ContextValue } from '../Context';
 import { ActionMove, ActionSwiping } from '../Context.actionTypes';
 
-const SWIPE_BOUNDS = TETRIS_AREA.WIDTH / 2;
+const SWIPE_BOUNDS = TETRIS_AREA.WIDTH / 2 + 1;
 
 function modifyStateWithNewX(state: ContextValue, newX: number) {
   if (!state.game) return state;

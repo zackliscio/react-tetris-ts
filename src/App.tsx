@@ -17,7 +17,7 @@ function App(props: { config?: Partial<TetrisAppConfig> }) {
   return (
     <TetrisContextWrap config={props.config}>
       <CSSVars />
-      <Layout id="ttrs">
+      <Layout className="ttrs">
         <Boards />
       </Layout>
     </TetrisContextWrap>

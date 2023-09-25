@@ -3,7 +3,7 @@
 }
 
 @media (orientation: portrait) {
-  .topBar.topBar {
+  .topBar {
     @apply flex;
     height: var(--topBar-h);
   }
@@ -13,14 +13,14 @@
   .center {
     max-height: calc(100vh - var(--topBar-h));
   }
-  .left.left,
-  .right.right {
+  .left,
+  .right {
     @apply hidden;
   }
 }
 
 @media (orientation: landscape) {
-  .topBar.topBar {
+  .topBar {
     @apply hidden;
   }
   .left.left,

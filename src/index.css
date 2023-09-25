@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.cibulka-tetris svg {
+svg {
   @apply fill-current;
 }
 
-.cibulka-tetris *:focus {
+*:focus {
   outline: 2px dotted;
   outline-color: theme('colors.outline');
   outline-offset: 3px;
@@ -14,7 +14,20 @@
 }
 
 @media (max-height: 660px) {
-  .cibulka-tetris .translate-y-screen {
+  .translate-y-screen {
     transform: translateY(660px);
   }
+}
+
+.cell-initial {
+  @apply bg-text;
+  opacity: 0.8;
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    theme('colors.board') 0,
+    theme('colors.board') 2px,
+    theme('colors.button') 0,
+    theme('colors.button') 50%
+  );
 }

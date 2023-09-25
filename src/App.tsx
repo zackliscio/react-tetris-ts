@@ -17,7 +17,7 @@ function App(props: { config?: Partial<TetrisAppConfig> }) {
   return (
     <TetrisContextWrap config={props.config}>
       <CSSVars />
-      <Layout>
+      <Layout className="cibulka-tetris">
         <Boards />
       </Layout>
     </TetrisContextWrap>

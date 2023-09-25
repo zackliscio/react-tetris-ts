@@ -9,6 +9,8 @@ import { GameSwipable } from '@/sections/game-effects/GameSwipable';
 import { getRowIndexesMultiple } from '@/utils/board';
 import { getShapeClassName, isShapeInvalid, recalculateShape } from '@/utils/shape';
 
+import styles from './BoardGame.module.css';
+
 export function BoardGame() {
   const { state } = useTetrisContext();
   const isPlaying = state.status === TETRIS_STATUS.PLAYING;
@@ -40,7 +42,7 @@ export function BoardGame() {
     const coordsCurrent = recalculateShape(shape, rotate, x, y);
     const isInvalid = isShapeInvalid(coordsCurrent, placed);
     coordsCurrent.forEach((coord) => {
-      result[coord] = isInvalid ? 'bg-text cell-initial' : getShapeClassName(shape);
+      result[coord] = isInvalid ? styles['cell-initial'] : getShapeClassName(shape);
     });
 
     // Cleared

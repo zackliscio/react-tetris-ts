@@ -19,6 +19,7 @@ export function Layout(props: PropsWithChildren & { className: string }) {
           'absolute inset-0 flex flex-col',
           '@container/layout',
           'text-text bg-background',
+          'select-none',
         ].join(' ')}
       >
         <div className={['flex items-center justify-between', 'px-4', styles.topBar].join(' ')}>

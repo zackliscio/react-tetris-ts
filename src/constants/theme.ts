@@ -1,7 +1,6 @@
 export const TETRIS_THEME_MODE = {
   DARK: 'THEME_MODE_DARK',
   LIGHT: 'THEME_MODE_LIGHT',
-  SYSTEM: 'THEME_MODE_SYSTEM',
 } as const;
 
 export const TETRIS_BG_DARK = '#111827';

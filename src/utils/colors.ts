@@ -21,14 +21,6 @@ export function useGetColor() {
         themeDefault = TETRIS_THEME_LIGHT;
         userConfig = colors?.light || colors?.main || null;
         break;
-      case TETRIS_THEME_MODE.SYSTEM:
-        themeDefault =
-          theme.system === TETRIS_THEME_MODE.LIGHT ? TETRIS_THEME_LIGHT : TETRIS_THEME_DARK;
-        userConfig =
-          (theme.system === TETRIS_THEME_MODE.LIGHT ? colors?.light : colors?.dark) ||
-          colors?.main ||
-          null;
-        break;
       case TETRIS_THEME_MODE.DARK:
       default:
         themeDefault = TETRIS_THEME_DARK;

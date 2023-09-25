@@ -64,7 +64,6 @@ export function BoardMenu() {
           <div className="flex gap-4 text-text">
             <ThemeSwitchButton theme={TETRIS_THEME_MODE.DARK} />
             <ThemeSwitchButton theme={TETRIS_THEME_MODE.LIGHT} />
-            <ThemeSwitchButton theme={TETRIS_THEME_MODE.SYSTEM} />
           </div>
         </LayoutForm>
         {action && (

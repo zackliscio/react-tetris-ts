@@ -8,19 +8,12 @@ import { getInitialGame } from './utils/BoardInitial.utils';
 
 import { GAME_ACTION, CONFIG_ACTION, Action } from './Context.actionTypes';
 import { ContextValue } from './Context';
-import { TETRIS_THEME_MODE } from '@/constants/theme';
-import { TetrisThemeModeSelected } from '@/types/public';
 
 export function gameReducer(state: ContextValue, action: Action): ContextValue {
   switch (action.type) {
     // Theme
     case CONFIG_ACTION.THEME_MODE: {
-      let selected: TetrisThemeModeSelected;
-      if (action.payload === TETRIS_THEME_MODE.SYSTEM) {
-        selected = state.theme.system || TETRIS_THEME_MODE.DARK;
-      } else {
-        selected = action.payload;
-      }
+      const selected = action.payload;
 
       return {
         ...state,

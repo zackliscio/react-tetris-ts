@@ -20,8 +20,7 @@ export type TetrisI18N = typeof i18n;
 
 export type TetrisThemeModePreference =
   | typeof TETRIS_THEME_MODE.DARK
-  | typeof TETRIS_THEME_MODE.LIGHT
-  | typeof TETRIS_THEME_MODE.SYSTEM;
+  | typeof TETRIS_THEME_MODE.LIGHT;
 
 export type TetrisAppConfig = {
   action?: {

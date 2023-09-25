@@ -1,7 +1,6 @@
 import { TETRIS_THEME_MODE } from '@/constants/theme';
 import { CONFIG_ACTION } from '@/context/Context.actionTypes';
 import { useTetrisContext } from '@/context/Context.utils';
-import { IconComputer } from '@/icons/IconComputer';
 import { IconMoon } from '@/icons/IconMoon';
 import { IconSun } from '@/icons/IconSun';
 import { TetrisThemeModePreference } from '@/types/public';
@@ -22,9 +21,6 @@ export function ThemeSwitchButton(props: { theme: TetrisThemeModePreference }) {
       break;
     case TETRIS_THEME_MODE.LIGHT:
       icon = <IconSun />;
-      break;
-    case TETRIS_THEME_MODE.SYSTEM:
-      icon = <IconComputer />;
       break;
     default:
       throw new Error(`Unknown mode ${props.theme}.`);

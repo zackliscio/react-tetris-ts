@@ -8,18 +8,18 @@ import { TETRIS_AREA } from '@/constants/board';
 import { useWidthIfAspectRatioNotWorking } from './Layout.utils';
 import styles from './Layout.module.css';
 
-export function Layout(props: PropsWithChildren & { className: string }) {
+export function Layout(props: PropsWithChildren & { id: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const width = useWidthIfAspectRatioNotWorking(ref);
 
   return (
     <div
       className={[
-        props.className,
         'absolute inset-0 flex flex-col',
         '@container/layout',
         'text-text bg-background',
       ].join(' ')}
+      id={props.id}
     >
       <div className={['flex items-center justify-between', 'px-4', styles.topBar].join(' ')}>
         <Next height="3em" />

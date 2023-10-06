@@ -6,6 +6,8 @@ import { useTetrisContext } from '@/context/Context.utils';
 import { GAME_ACTION } from '@/context/Context.actionTypes';
 import { useCountdown } from '@/utils/useCountdown';
 
+import styles from './BoardOverlay.module.css';
+
 export function BoardOverlay() {
   const { dispatch, state } = useTetrisContext();
 
@@ -31,7 +33,7 @@ export function BoardOverlay() {
       // isVisible
       isDown={!isCountdown}
     >
-      {isCountdown && <span className="text-6xl">{countdown.number}</span>}
+      {isCountdown && <span className={styles.text}>{countdown.number}</span>}
     </Board>
   );
 }

@@ -13,20 +13,20 @@ function modifyStateWithNewX(state: ContextValue, newX: number) {
   let newXInBounds = newX;
   newXInBounds = Math.min(newXInBounds, SWIPE_BOUNDS);
   newXInBounds = Math.max(newXInBounds, SWIPE_BOUNDS * -1);
-  if (newX !== newXInBounds) {
-    console.log('Bounded', newX, newXInBounds);
-  }
 
-  const { shape, rotate, x, y, placed } = state.game;
-  const isLeft = newX < 0;
-  let newShape = recalculateShape(shape, rotate, newXInBounds, y);
-  let isInvalid = isShapeInvalid(newShape, placed);
+  const { shape, rotate, y, placed } = state.game;
+  const newShape = recalculateShape(shape, rotate, newXInBounds, y);
+  const isInvalid = isShapeInvalid(newShape, placed);
+  if (isInvalid) return state;
+  /*
   if (isInvalid) {
+    const isLeft = newX < 0;
     newXInBounds = isLeft ? x + -1 : x + 1;
     newShape = recalculateShape(shape, rotate, newXInBounds, y);
     isInvalid = isShapeInvalid(newShape, placed);
     if (isInvalid) return state;
   }
+  */
 
   return {
     ...state,

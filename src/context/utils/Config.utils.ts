@@ -11,7 +11,6 @@ export function getDefaultConfig(config?: Partial<TetrisAppConfig>): TetrisAppCo
     i18N: config?.i18N || i18n,
     padding: 0,
     colors: config?.colors,
-    isPersisted: true,
     theme: config?.theme || TETRIS_THEME_MODE.DARK,
   };
 }

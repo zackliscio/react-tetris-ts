@@ -35,7 +35,6 @@ export type ContextValue = {
     initialLevel: number;
     initialRows: number;
   };
-  isWaitingForLocalStorage: boolean;
   next: {
     shape: Shape;
     rotate: number;
@@ -65,7 +64,6 @@ export function TetrisContextWrap(
       initialLevel: 3,
       initialRows: 3,
     },
-    isWaitingForLocalStorage: Boolean(props.config?.isPersisted),
     next: {
       shape: shapeNextInitial,
       rotate: getRandomRotate(shapeNextInitial),

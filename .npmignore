@@ -1,5 +1,6 @@
 *
 !dist/*
+!dist/**/*
 !COPYING
 !package.json
 !README.md

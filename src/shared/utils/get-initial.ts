@@ -1,10 +1,10 @@
 import { BoardCellValue, GameContextValue } from "@/context/game/types";
-import { ShapeOther } from "@/shared//constants/shape";
+import { Shape, ShapeOther } from "@/shared//constants/shape";
 import { BOARD_SIZE } from "@/shared/constants/board";
 import { GameStatus } from "@/shared/constants/game";
 
 import { getNextState } from "./get-next-state";
-import { getRandomInitialRow, getRandomShape } from "./get-random";
+import { getRandomInitialRow } from "./get-random";
 import { getShapeHint } from "./get-shape-hint";
 
 export function getInitialCells(initialRows: number) {
@@ -26,10 +26,10 @@ export function getInitialCells(initialRows: number) {
 type Params = {
   countdown: boolean;
   initialRows: number;
+  shapeNext: Shape;
 };
 
-export function getInitialGame({ countdown, initialRows }: Params): GameContextValue {
-  const shapeNext = getRandomShape();
+export function getInitialGame({ countdown, initialRows, shapeNext }: Params): GameContextValue {
   const cells = getInitialCells(initialRows);
   const state = getNextState({ countdown, shapeNext });
   const hint = getShapeHint({ ...state, cells });

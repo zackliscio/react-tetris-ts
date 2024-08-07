@@ -1,14 +1,16 @@
 import React, { PropsWithChildren, useReducer } from "react";
 
+import { DEFAULT_INITIAL_LEVEL, DEFAULT_INITIAL_ROWS } from "@/shared/constants/game";
 import { ThemeMode } from "@/shared/constants/theme";
+
 import { CssVars } from "./css-vars";
 import { appReducer } from "./reducer";
 import { AppContextValue, AppDispatch } from "./types";
 import { useSystemLightMode } from "./use-system-light-mode";
 
 const initialState: AppContextValue = {
-  initialLevel: 3,
-  initialRows: 5,
+  initialLevel: DEFAULT_INITIAL_LEVEL,
+  initialRows: DEFAULT_INITIAL_ROWS,
   themeSystem: undefined,
   themeUser: ThemeMode.DARK,
 };

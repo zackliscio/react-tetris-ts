@@ -1,6 +1,7 @@
 import { GameStatus } from "@/shared/constants/game";
 import { getInitialGame } from "@/shared/utils/get-initial";
 
+import { getRandomShape } from "@/shared/utils/get-random";
 import { GameContextValue } from "../types";
 
 export function pause(state: GameContextValue) {
@@ -35,7 +36,11 @@ export function countdownFinished(state: GameContextValue) {
 export function restart(state: GameContextValue, payload: { initialRows: number }) {
   return {
     ...state,
-    ...getInitialGame({ countdown: true, initialRows: payload.initialRows }),
+    ...getInitialGame({
+      countdown: true,
+      initialRows: payload.initialRows,
+      shapeNext: getRandomShape(),
+    }),
     countdown: true,
   };
 }

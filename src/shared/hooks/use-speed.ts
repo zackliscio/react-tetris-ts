@@ -6,7 +6,8 @@ import { SPEED_DROPPING_MS, SPEED_INCREASE_MS, SPEED_INITIAL_MS } from "@/shared
 import { useLevel } from "./use-level";
 
 export function useSpeed() {
-  const { dropping } = useGameState();
+  const state = useGameState();
+  const dropping = state?.dropping;
 
   const level = useLevel();
 

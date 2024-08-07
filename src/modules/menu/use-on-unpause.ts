@@ -4,7 +4,8 @@ import { KEYS_PAUSE } from "@/shared/constants/keyboard";
 import { useCallback, useEffect } from "react";
 
 export function useOnUnpause() {
-  const { status } = useGameState();
+  const state = useGameState();
+  const { status } = state || {};
   const { onUnpause } = useGameCallbacks();
 
   const onKeyDown = useCallback(

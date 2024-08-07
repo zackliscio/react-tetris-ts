@@ -16,11 +16,12 @@ import styles from "./menu.module.css";
 const statuses = [GameStatus.IDLE, GameStatus.FINISHED, GameStatus.PAUSED];
 
 export function GameMenu() {
-  const { countdown, status } = useGameState();
+  const state = useGameState();
+  const { countdown, status } = state || {};
 
   useOnUnpause();
 
-  if (countdown || !statuses.includes(status)) return null;
+  if (countdown || !status || !statuses.includes(status)) return null;
 
   return (
     <Board isOpaque={status !== GameStatus.IDLE}>

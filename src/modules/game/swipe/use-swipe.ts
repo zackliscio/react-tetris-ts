@@ -11,10 +11,12 @@ type Swipe = {
 };
 
 export function useSwipe({ cellSize }: { cellSize: number | undefined }) {
-  const { x } = useGameState();
+  const state = useGameState();
   const [swipe, setSwipe] = useState<undefined | Swipe>(undefined);
 
+  const x = state?.x;
   const onSwipeStart = useCallback(() => {
+    if (typeof x !== "number") return;
     setSwipe({
       min: x - MAX_X,
       max: MAX_X - x,

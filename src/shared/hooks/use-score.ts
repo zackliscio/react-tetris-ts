@@ -6,8 +6,8 @@ export function useScore() {
   const {
     state: { initialLevel, initialRows },
   } = useAppContext();
-  const { cleared } = useGameState();
+  const state = useGameState();
   const level = useLevel();
 
-  return cleared * (initialLevel + initialRows + level + 1);
+  return state ? state.cleared * (initialLevel + initialRows + level + 1) : 0;
 }

@@ -5,13 +5,13 @@ import { GameStatus } from "@/shared/constants/game";
 import { useSpeed } from "@/shared/hooks/use-speed";
 
 export function useTick() {
-  const { status } = useGameState();
+  const state = useGameState();
   const { onTick } = useGameCallbacks();
 
   const speedMs = useSpeed();
 
   const interval = useRef<NodeJS.Timeout>();
-  const isPlaying = status === GameStatus.PLAYING;
+  const isPlaying = state?.status === GameStatus.PLAYING;
   useEffect(() => {
     if (interval.current) {
       clearInterval(interval.current);

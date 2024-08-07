@@ -5,7 +5,7 @@ import { GameStatus } from "@/shared/constants/game";
 import { KEYS_BOTTOM, KEYS_LEFT, KEYS_PAUSE, KEYS_RIGHT, KEYS_ROTATE } from "@/shared/constants/keyboard";
 
 export function useKeyboardGame() {
-  const { status } = useGameState();
+  const state = useGameState();
   const { onDrop, onDropStop, onMove, onPause, onRotate } = useGameCallbacks();
 
   const onKeyDown = useCallback(
@@ -33,7 +33,7 @@ export function useKeyboardGame() {
     [onDropStop]
   );
 
-  const isPlaying = status === GameStatus.PLAYING;
+  const isPlaying = state?.status === GameStatus.PLAYING;
   useEffect(() => {
     if (isPlaying) {
       window.addEventListener("keydown", onKeyDown);

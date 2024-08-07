@@ -10,7 +10,7 @@ import { useTick } from "./use-tick";
 
 export const Game = () => {
   const state = useGameState();
-  const boardCells = useMemo(() => getBoardCells(state), [state]);
+  const boardCells = useMemo(() => (state ? getBoardCells(state) : []), [state]);
 
   useTick();
   useKeyboardGame();

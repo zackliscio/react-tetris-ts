@@ -5,7 +5,8 @@ import styles from "./column-controls.module.css";
 import { useControls } from "./use-controls";
 
 export function ColumnControls(props: { side: "left" | "right" }) {
-  const { countdown, status } = useGameState();
+  const state = useGameState();
+  const { countdown, status } = state || {};
   const controls = useControls();
   const { top, bottom } = controls[props.side];
 

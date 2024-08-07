@@ -3,9 +3,10 @@ import { useGameState } from "@/context/game";
 import { CLEARED_FOR_LEVEL } from "@/shared/constants/score";
 
 export function useLevel() {
-  const { cleared } = useGameState();
+  const state = useGameState();
   const {
     state: { initialLevel },
   } = useAppContext();
-  return Math.floor(cleared / CLEARED_FOR_LEVEL) + initialLevel;
+
+  return state ? Math.floor(state.cleared / CLEARED_FOR_LEVEL) + initialLevel : 0;
 }

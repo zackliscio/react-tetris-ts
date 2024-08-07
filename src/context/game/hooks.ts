@@ -10,6 +10,5 @@ export function useGameContext() {
 
 export function useGameState() {
   const { state } = useGameContext();
-  if (!state) throw new Error("Missing state in GameProvider - maybe not hydrated?");
-  return state;
+  return state || null;
 }

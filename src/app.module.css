@@ -1,0 +1,7 @@
+.root {
+  @apply grid grid-cols-1;
+}
+
+.root > * {
+  @apply col-start-1 row-start-1;
+}

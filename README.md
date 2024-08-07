@@ -27,7 +27,7 @@ _This project is a tribute to original Tetris game. It is intended to test the c
   <a aria-label="Tailwind" href="https://tailwindcss.com/">
     <img src="https://img.shields.io/badge/Tailwind_CSS-black?logo=tailwindcss&labelColor=black" />
   </a>
-  <a aria-label="My resumé" href="https://www.cibulka.codes/en/cv.pdf">
+  <a aria-label="My resumé" href="https://www.cibulka.codes/cv.pdf">
     <img src="https://img.shields.io/badge/Download_my_resumé!-blue" />
   </a>
 </div>
@@ -38,7 +38,7 @@ _This project is a tribute to original Tetris game. It is intended to test the c
 
 <br />
 
-## 🔧  Install & Use
+## 🔧 Install & Use
 
 This project is built as a NPM module easily includable to any React application ([www.cibulka.codes](https://www.github.com/cibulka/cibulka.codes), for example).
 
@@ -53,11 +53,11 @@ npm install https://www.github.com/cibulka/react-tetris-ts
 2. Import the library to your project.
 
 ```tsx
-import Tetris from 'react-tetris-ts';
+import Tetris from "react-tetris-ts";
 
 export default function PageWithTetris() {
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div style={{ width: "100vw", height: "100vh" }}>
       <Tetris />
     </div>
   );
@@ -84,7 +84,7 @@ npm run dev
 
 3. Open the local URL (shown in your terminal window), usually [http://localhost:5173](http://localhost:5173).
 
-## 📦  Features
+## 📦 Features
 
 <details>
     <summary>📏 Fully responsive (container queries)</summary>
@@ -143,7 +143,7 @@ All configuration is optional, library works out of the box.
 If you want to include your configuration, pass it as a prop during the import:
 
 ```tsx
-import Tetris, { TetrisAppConfig } from 'react-tetris-ts';
+import Tetris, { TetrisAppConfig } from "react-tetris-ts";
 
 export default function PageWithTetris() {
   const config: AppConfig = {
@@ -151,7 +151,7 @@ export default function PageWithTetris() {
   };
 
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div style={{ width: "100vw", height: "100vh" }}>
       <Tetris />
     </div>
   );

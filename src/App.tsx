@@ -1,27 +1,29 @@
-import { useEffect } from 'react';
+import { AppProvider } from "@/context/app";
+import { GameProvider } from "@/context/game";
+import { messages } from "@/messages";
+import { GameCountdown } from "@/modules/countdown";
+import { Game } from "@/modules/game";
+import { Layout } from "@/modules/layout";
+import { GameMenu } from "@/modules/menu";
 
-import { Layout } from '@/components/layout/Layout';
-import { GREETING } from '@/constants/branding';
-import { TetrisContextWrap } from '@/context/Context';
-import { Boards } from '@/sections/boards/Boards';
-import { CSSVars } from '@/sections/css-vars/CSSVars';
-import { TetrisAppConfig } from '@/types/public';
+import { IntlProvider } from "react-intl";
+import "./app.css";
+import styles from "./app.module.css";
 
-import './index.css';
-
-// import { TestLayout } from './components/test-layout/TestLayout';
-
-function App(props: { config?: Partial<TetrisAppConfig> }) {
-  useEffect(() => console.log(GREETING), []);
-
+export default function App() {
   return (
-    <TetrisContextWrap config={props.config}>
-      <CSSVars />
-      <Layout className="ttrs">
-        <Boards />
-      </Layout>
-    </TetrisContextWrap>
+    <IntlProvider messages={messages} locale="en" defaultLocale="en">
+      <AppProvider>
+        <GameProvider>
+          <Layout className="bg-background text-text">
+            <div className={styles.root}>
+              <Game />
+              <GameMenu />
+              <GameCountdown />
+            </div>
+          </Layout>
+        </GameProvider>
+      </AppProvider>
+    </IntlProvider>
   );
 }
-
-export default App;

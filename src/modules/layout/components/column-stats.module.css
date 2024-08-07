@@ -1,0 +1,4 @@
+.root {
+  @apply flex flex-1 items-center justify-center;
+  @apply portrait:hidden touch:hidden;
+}

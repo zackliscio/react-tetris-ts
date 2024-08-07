@@ -1,0 +1,8 @@
+.layout {
+  @apply flex w-full;
+}
+
+.board {
+  @apply flex items-center justify-center;
+  @apply portrait:w-full;
+}

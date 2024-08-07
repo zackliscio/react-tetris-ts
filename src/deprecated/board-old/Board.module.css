@@ -1,8 +1,0 @@
-.board {
-  @apply h-full;
-  min-width: 15em;
-}
-.board_cell {
-  height: 5%;
-  min-height: 1.25em;
-}

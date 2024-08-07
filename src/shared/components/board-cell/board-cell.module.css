@@ -1,0 +1,4 @@
+.board_cell {
+  width: calc(var(--board-height) / 20 - var(--board-remainder));
+  height: calc(var(--board-height) / 20 - var(--board-remainder));
+}

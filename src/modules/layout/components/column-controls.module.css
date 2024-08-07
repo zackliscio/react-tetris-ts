@@ -1,0 +1,17 @@
+.root {
+  @apply flex flex-col flex-1 items-center justify-center;
+  @apply portrait:hidden notouch:hidden;
+}
+
+.root svg {
+  @apply fill-current;
+}
+
+.root button {
+  outline: none;
+}
+
+.root-playing button:focus,
+.root-playing button:active {
+  @apply bg-control_focus;
+}

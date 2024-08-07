@@ -1,6 +1,7 @@
 export enum GameActionType {
   COUNTDOWN_FINISHED = "COUNTDOWN_FINISHED",
   DROP = "DROP",
+  HYDRATE = "HYDRATE",
   MOVE = "MOVE",
   PAUSE = "PAUSE",
   UNPAUSE = "UNPAUSE",
@@ -12,6 +13,7 @@ export enum GameActionType {
 export type GameAction =
   | { type: GameActionType.COUNTDOWN_FINISHED }
   | { type: GameActionType.DROP; payload: boolean }
+  | { type: GameActionType.HYDRATE }
   | { type: GameActionType.PAUSE }
   | { type: GameActionType.UNPAUSE }
   | { type: GameActionType.RESTART; payload: { initialRows: number } }

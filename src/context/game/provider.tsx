@@ -1,8 +1,6 @@
-import React, { PropsWithChildren, useMemo, useReducer } from "react";
+import React, { PropsWithChildren, useEffect, useReducer } from "react";
 
-import { DEFAULT_INITIAL_ROWS } from "@/shared/constants/game";
-import { getInitialGame } from "@/shared/utils/get-initial";
-import { getRandomRotate, getRandomShape } from "@/shared/utils/get-random";
+import { GameActionType } from "./action-types";
 import { gameReducer } from "./reducer";
 import { GameContextValue, GameDispatch } from "./types";
 
@@ -12,20 +10,11 @@ export const GameContext = React.createContext<{
 }>({ state: null, dispatch: null });
 
 export function GameProvider(props: PropsWithChildren) {
-  const initialState = useMemo(() => {
-    const shape = getRandomShape();
-    const shapeNext = getRandomShape();
-    return getInitialGame({
-      countdown: false,
-      initialRows: DEFAULT_INITIAL_ROWS,
-      shape,
-      shapeNext,
-      rotate: getRandomRotate(shape),
-      rotateNext: getRandomRotate(shapeNext),
-    });
-  }, []);
+  const [state, dispatch] = useReducer(gameReducer, null);
 
-  const [state, dispatch] = useReducer(gameReducer, initialState);
+  useEffect(() => {
+    dispatch({ type: GameActionType.HYDRATE });
+  }, [dispatch]);
 
   return <GameContext.Provider value={{ state, dispatch }}>{props.children}</GameContext.Provider>;
 }

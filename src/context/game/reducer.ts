@@ -1,16 +1,22 @@
 import { GameAction, GameActionType } from "./action-types";
+import { hydrate } from "./actions/hydrate";
 import { move, rotate } from "./actions/move";
 import { countdownFinished, drop, pause, restart, unpause } from "./actions/status";
 import { tick } from "./actions/tick";
 import { GameContextValue } from "./types";
 
-export function gameReducer(state: GameContextValue, action: GameAction) {
+export function gameReducer(state: GameContextValue | null, action: GameAction) {
+  if (!state) return state;
+
   switch (action.type) {
     case GameActionType.COUNTDOWN_FINISHED: {
       return countdownFinished(state);
     }
     case GameActionType.DROP: {
       return drop(state, action.payload);
+    }
+    case GameActionType.HYDRATE: {
+      return hydrate();
     }
     case GameActionType.PAUSE: {
       return pause(state);

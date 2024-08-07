@@ -11,6 +11,15 @@ export default defineConfig({
       name: "react-tetris-ts",
       fileName: "main",
     },
+    rollupOptions: {
+      external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+          ["react-dom"]: "react-dom",
+        },
+      },
+    },
   },
   resolve: {
     alias: {

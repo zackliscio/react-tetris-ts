@@ -1,3 +1,5 @@
 export type TetrisConfig = {
-  locale: string;
+  locale?: string;
+  height?: string;
+  width?: string;
 };

@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { THEME_DARK } from "@/shared/constants/colors";
 import { ThemeColor } from "@/shared/constants/theme";
 
+import { ROOT_CLASSNAME } from "@/shared/constants/ui";
 import { useAppContext, useGetColor } from "./hooks";
 
 export function CssVars() {
@@ -27,7 +28,7 @@ export function CssVars() {
       .join("");
 
     let result = `
-      :root {
+      .${ROOT_CLASSNAME} {
         ${defaultRules}
       }
     `;
@@ -35,7 +36,7 @@ export function CssVars() {
     if (!themeUser) {
       result += `
         @media (prefers-color-scheme:dark) {
-          :root {
+          .${ROOT_CLASSNAME} {
             ${darkModeRules}
           }
         }

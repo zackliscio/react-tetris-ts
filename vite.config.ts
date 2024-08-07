@@ -1,13 +1,11 @@
 import react from "@vitejs/plugin-react";
 import autoprefixer from "autoprefixer";
 import path from "path";
-import prefixer from "postcss-prefix-selector";
 import tailwindcss from "tailwindcss";
 import { defineConfig } from "vite";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import dts from "vite-plugin-dts";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), cssInjectedByJsPlugin(), dts()],
   build: {
@@ -42,20 +40,26 @@ export default defineConfig({
     postcss: {
       plugins: [
         tailwindcss("./tailwind.config.js"),
+        /*
         prefixer({
           prefix: `.react-tetris-ts`,
           transform(prefix: string, selector: string, prefixedSelector: string, filePath: string) {
-            if (selector.match(/^(html|body)/)) {
-              return selector.replace(/^([^\s]*)/, `$1 ${prefix}`);
+            let result: string;
+
+            if (filePath.endsWith("view.css") || filePath.match(/node_modules/)) {
+              result = selector;
+            } else if (selector.match(/^(html|body)/)) {
+              result = selector.replace(/^([^\s]*)/, `$1 ${prefix}`);
+            } else {
+              result = prefixedSelector;
             }
 
-            if (filePath.match(/node_modules/)) {
-              return selector;
-            }
+            console.log({ prefix, selector, prefixedSelector, filePath, result });
 
-            return prefixedSelector;
+            return result;
           },
         }),
+        */
         autoprefixer({}),
       ],
     },

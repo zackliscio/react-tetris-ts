@@ -2,21 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* Vars */
+
+.react-tetris-ts {
   --board-height: 100svh;
   --board-gap: 2px;
   --board-remainder: 2.2px;
 }
 
 @media screen(sm) {
-  :root {
+  .react-tetris-ts {
     --board-gap: 4px;
     --board-remainder: 4.5px;
   }
-  html {
-    font-size: 18px;
-  }
 }
+
+/* Typography */
+
+html {
+  font-size: 18px;
+}
+
 @media screen(md) {
   html {
     font-size: 20px;
@@ -28,25 +34,8 @@
   }
 }
 
+/* Other */
 html,
 body {
   overscroll-behavior: none;
-}
-
-#root {
-  @apply flex flex-col;
-  @apply h-screen;
-  min-width: 320px;
-}
-
-.bg-shape_initial {
-  @apply bg-text;
-  background-size: 6px 6px;
-  background-image: repeating-linear-gradient(
-    45deg,
-    theme("colors.board_shade") 0,
-    theme("colors.board") 2px,
-    theme("colors.board") 0,
-    theme("colors.board_shade") 50%
-  );
 }

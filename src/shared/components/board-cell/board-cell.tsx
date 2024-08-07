@@ -17,6 +17,7 @@ export function BoardCell(
         styles.board_cell,
         props.className,
         props.shape ? SHAPES_CLASSNAMES[props.shape] : props.classNameEmpty,
+        props.shape === ShapeOther.INITIAL && styles["board_cell-initial"],
       ]
         .filter(Boolean)
         .join(" ")}

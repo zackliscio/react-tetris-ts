@@ -1,16 +1,9 @@
 {
   "name": "react-tetris-ts",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.10",
   "type": "module",
-  "files": ["dist"],
-  "main": "./dist/main.umd.cjs",
-  "module": "./dist/main.js",
-  "exports": {
-    ".": {
-      "import": "./dist/main.js",
-      "require": "./dist/main.umd.cjs"
-    }
-  },
+  "main": "./dist/main.js",
+  "types": "./dist/src/main.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

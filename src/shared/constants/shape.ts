@@ -67,7 +67,7 @@ export const SHAPES_CLASSNAMES = {
   [Shape.S]: "bg-shape_s",
   [Shape.T]: "bg-shape_t",
   [Shape.Z]: "bg-shape_z",
-  [ShapeOther.INITIAL]: "bg-shape_initial",
+  [ShapeOther.INITIAL]: "",
   [ShapeOther.FULL]: "bg-shape_full opacity-50",
   [ShapeOther.EDGE]: "bg-shape_edge",
   [ShapeOther.HINT]: "touch:bg-shape_hint touch:opacity-50",

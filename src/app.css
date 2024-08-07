@@ -5,7 +5,7 @@
 /* Vars */
 
 .react-tetris-ts {
-  --board-height: 100svh;
+  --board-height: 100dvh;
   --board-gap: 2px;
   --board-remainder: 2.2px;
 }

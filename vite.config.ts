@@ -33,7 +33,7 @@ export default defineConfig({
   css: {
     modules: {
       generateScopedName: (name, filename) => {
-        if (name === "ttrs") return "ttrs.ttrs";
+        if (name === "react-tetris-ts") return "react-tetris-ts.react-tetris-ts";
         const file = path.basename(filename, ".css").split(".")[0];
         const result = ("_" + file + "_" + name).replace(".", "-");
         return result;

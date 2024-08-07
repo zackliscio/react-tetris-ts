@@ -21,7 +21,7 @@ export function GameMenu() {
 
   useOnUnpause();
 
-  if (countdown || !status || !statuses.includes(status)) return null;
+  if (countdown || (status && !statuses.includes(status))) return null;
 
   return (
     <Board isOpaque={status !== GameStatus.IDLE}>
@@ -33,14 +33,16 @@ export function GameMenu() {
         <div
           className={[
             "absolute inset-0 short:bg-board pointer-events-none",
-            status !== GameStatus.IDLE && "opacity-50",
+            (!status || status !== GameStatus.IDLE) && "opacity-50",
           ].join(" ")}
         />
         <div
           className={["flex flex-col gap-4 tall:gap-8", "short:flex-1 short:justify-center", "relative z-10"].join(" ")}
         >
-          {status !== GameStatus.IDLE && <MenuScore className={[styles.scoreTop, "short:hidden"].join(" ")} />}
-          {status === GameStatus.PAUSED ? <ButtonResume /> : <ButtonPlay />}
+          {status && status !== GameStatus.IDLE && (
+            <MenuScore className={[styles.scoreTop, "short:hidden"].join(" ")} />
+          )}
+          {status === GameStatus.PAUSED ? <ButtonResume /> : <ButtonPlay disabled={!status} />}
           <InitialLevel />
           <InitialRows />
         </div>

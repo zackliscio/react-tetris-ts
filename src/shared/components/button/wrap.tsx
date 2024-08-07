@@ -7,7 +7,7 @@ export function ButtonWrap(props: ButtonProps & PropsWithChildren<{ className: s
       {props.children}
     </a>
   ) : (
-    <button type={props.type || "button"} onClick={props.onClick} className={props.className}>
+    <button disabled={props.disabled} type={props.type || "button"} onClick={props.onClick} className={props.className}>
       {props.children}
     </button>
   );

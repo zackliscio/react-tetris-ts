@@ -1,4 +1,4 @@
-export const messages = {
+const enMessages = {
   authorLabel: "Author",
   authorEmoji: "👨‍💻",
   authorText: "Check me out at { link }",
@@ -10,4 +10,23 @@ export const messages = {
   play: "New game",
   resume: "Resume game",
   score: "Your score",
+};
+
+const csMessages = {
+  authorLabel: "Autor",
+  authorEmoji: "👨‍💻",
+  authorText: "Můj profil { link }",
+  initialLevel: "Vstupní úroveň",
+  initialRows: "Vstupní řádky",
+  level: "Úroveň",
+  lightMode: "Tmavý režim",
+  next: "Další",
+  play: "Nová hra",
+  resume: "Pokračovat",
+  score: "Vaše skóre",
+};
+
+export const messages: Record<string, typeof enMessages> = {
+  en: enMessages,
+  cs: csMessages,
 };

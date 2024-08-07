@@ -1,11 +1,13 @@
 import { useCallback, useEffect } from "react";
 
-import { useGameCallbacks, useGameState } from "@/context/game";
+import { useGameCallbacks, useGameContext } from "@/context/game";
 import { GameStatus } from "@/shared/constants/game";
 import { KEYS_BOTTOM, KEYS_LEFT, KEYS_PAUSE, KEYS_RIGHT, KEYS_ROTATE } from "@/shared/constants/keyboard";
 
 export function useKeyboardGame() {
-  const state = useGameState();
+  const {
+    state: { status },
+  } = useGameContext();
   const { onDrop, onDropStop, onMove, onPause, onRotate } = useGameCallbacks();
 
   const onKeyDown = useCallback(
@@ -33,7 +35,7 @@ export function useKeyboardGame() {
     [onDropStop]
   );
 
-  const isPlaying = state?.status === GameStatus.PLAYING;
+  const isPlaying = status === GameStatus.PLAYING;
   useEffect(() => {
     if (isPlaying) {
       window.addEventListener("keydown", onKeyDown);

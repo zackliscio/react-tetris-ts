@@ -6,14 +6,16 @@ import { getShapeCoords } from "./get-shape-coords";
 import { placeShape } from "./place-shape";
 
 export function getBoardCells(state: GameContextValue) {
-  let result = state.cells;
+  if (!state.board) return [];
+
+  let result = state.board.cells;
 
   // Place hint
-  if (state.hint) {
+  if (state.board.hint) {
     result = placeShape(
       {
         shape: ShapeOther.HINT,
-        coords: state.hint,
+        coords: state.board.hint,
       },
       result,
       false
@@ -21,11 +23,11 @@ export function getBoardCells(state: GameContextValue) {
   }
 
   // Place current shape
-  const currentShapeCoords = getShapeCoords({}, state);
+  const currentShapeCoords = getShapeCoords({}, state.board);
   if (currentShapeCoords) {
     result = placeShape(
       {
-        shape: state.shape,
+        shape: state.board.shape,
         coords: currentShapeCoords,
       },
       result,

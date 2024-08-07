@@ -1,9 +1,8 @@
-import { useGameState } from "@/context/game";
+import { Author } from "@/shared/components/author/author";
 import { Board } from "@/shared/components/board";
 import { LightMode } from "@/shared/components/light-mode";
 import { GameStatus } from "@/shared/constants/game";
 
-import { Author } from "@/shared/components/author/author";
 import { ButtonPlay } from "./button-play";
 import { ButtonResume } from "./button-resume";
 import { InitialLevel } from "./initial-level";
@@ -11,13 +10,15 @@ import { InitialRows } from "./initial-rows";
 import { MenuScore } from "./score";
 import { useOnUnpause } from "./use-on-unpause";
 
+import { useGameContext } from "@/context/game";
 import styles from "./menu.module.css";
 
 const statuses = [GameStatus.IDLE, GameStatus.FINISHED, GameStatus.PAUSED];
 
 export function GameMenu() {
-  const state = useGameState();
-  const { countdown, status } = state || {};
+  const {
+    state: { countdown, status },
+  } = useGameContext();
 
   useOnUnpause();
 

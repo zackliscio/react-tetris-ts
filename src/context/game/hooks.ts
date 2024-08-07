@@ -7,8 +7,3 @@ export function useGameContext() {
   if (!appContext) throw new Error("Missing GameProvider");
   return appContext;
 }
-
-export function useGameState() {
-  const { state } = useGameContext();
-  return state || null;
-}

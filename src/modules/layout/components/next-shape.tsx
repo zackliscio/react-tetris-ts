@@ -9,8 +9,10 @@ import { useIntl } from "react-intl";
 
 export function NextShape() {
   const { formatMessage } = useIntl();
-  const { state } = useGameContext();
-  const coords = state ? SHAPES_SMALL[state.shapeNext][state.rotateNext] : null;
+  const {
+    state: { board },
+  } = useGameContext();
+  const coords = board ? SHAPES_SMALL[board.shapeNext][board.rotateNext] : null;
 
   const boardCells = useMemo(() => [...Array(BOARD_AREA_SMALL)].map((_el, index) => index), []);
 
@@ -22,7 +24,7 @@ export function NextShape() {
             <BoardCell
               classNameEmpty="bg-board"
               key={index}
-              shape={state && coords?.includes(index) ? state.shapeNext : null}
+              shape={board && coords?.includes(index) ? board.shapeNext : null}
             />
           ))}
         </div>

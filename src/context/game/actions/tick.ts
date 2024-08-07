@@ -2,78 +2,102 @@ import { GameStatus } from "@/shared/constants/game";
 import { ShapeOther } from "@/shared/constants/shape";
 import { clearFullRows } from "@/shared/utils/clear-full-rows";
 import { getFullRowIndexes } from "@/shared/utils/get-full-row-indexes";
-import { getNextState } from "@/shared/utils/get-next-state";
 import { getShapeCoords, getShapeCoordsAlways } from "@/shared/utils/get-shape-coords";
-import { getStateWithHint } from "@/shared/utils/get-shape-hint";
 import { placeShape } from "@/shared/utils/place-shape";
 
 import { getRandomRotate, getRandomShape } from "@/shared/utils/get-random";
+import { getShapeHint } from "@/shared/utils/get-shape-hint";
 import { GameContextValue } from "../types";
 
-export function tick(state: GameContextValue) {
+export function tick(state: GameContextValue): GameContextValue {
+  if (!state.board) {
+    throw new Error("Board not created");
+  }
+
   // Clearing rows
   if (state.fullRowIndexes) {
     return {
       ...state,
-      cells: clearFullRows(state.fullRowIndexes, state.cells),
+      board: {
+        ...state.board,
+        cells: clearFullRows(state.fullRowIndexes, state.board.cells),
+        hint: null,
+      },
       cleared: state.cleared + state.fullRowIndexes.length,
       dropping: false,
-      hint: null,
       fullRowIndexes: null,
     };
   }
 
   // Falls to next row
-  const yCurrent = state.y + 1;
-  const movedCoords = getShapeCoords({ y: yCurrent }, state);
+  const yCurrent = state.board.y + 1;
+  const movedCoords = getShapeCoords({ y: yCurrent }, state.board);
 
   if (movedCoords) {
-    return getStateWithHint({
+    return {
       ...state,
-      y: yCurrent,
-    });
+      board: {
+        ...state.board,
+        hint: getShapeHint(state.board),
+        y: yCurrent,
+      },
+    };
   }
 
+  const shape = state.board.shapeNext;
   const shapeNext = getRandomShape();
-  const stateNext = getNextState({
-    shape: state.shapeNext,
-    shapeNext,
-    rotate: getRandomRotate(state.shapeNext),
-    rotateNext: getRandomRotate(shapeNext),
-  });
-  const currentCoordsValid = getShapeCoords({}, state);
+  const rotate = getRandomRotate(shape);
+  const rotateNext = getRandomRotate(shapeNext);
+  const currentCoordsValid = getShapeCoords({}, state.board);
 
   // Placing valid
   if (currentCoordsValid) {
     const cells = placeShape(
       {
-        shape: state.shape,
+        shape: state.board.shape,
         coords: currentCoordsValid,
       },
-      state.cells
+      state.board.cells
     );
     return {
       ...state,
-      ...stateNext,
-      cells,
-      hint: null,
+      board: {
+        cells,
+        hint: null,
+        shape,
+        shapeNext,
+        rotate,
+        rotateNext,
+        x: 0,
+        y: 0,
+      },
       fullRowIndexes: getFullRowIndexes(cells),
     };
   }
 
   // Placing invalid
-  const currentCoordsInvalid = getShapeCoordsAlways({}, state);
+  const currentCoordsInvalid = getShapeCoordsAlways({}, state.board);
+  const cells = placeShape(
+    {
+      shape: ShapeOther.INITIAL,
+      coords: currentCoordsInvalid,
+    },
+    state.board.cells,
+    true
+  );
+
   return {
     ...state,
-    ...stateNext,
-    cells: placeShape(
-      {
-        shape: ShapeOther.INITIAL,
-        coords: currentCoordsInvalid,
-      },
-      state.cells,
-      true
-    ),
+    board: {
+      cells,
+      hint: null,
+      shape,
+      shapeNext,
+      rotate,
+      rotateNext,
+      x: 0,
+      y: 0,
+    },
     status: GameStatus.FINISHED,
   };
 }

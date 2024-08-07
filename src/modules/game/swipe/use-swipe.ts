@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { SwipeEventData, useSwipeable } from "react-swipeable";
 
-import { useGameCallbacks, useGameState } from "@/context/game";
+import { useGameCallbacks, useGameContext } from "@/context/game";
 import { MAX_X } from "@/shared/constants/board";
 
 type Swipe = {
@@ -11,10 +11,12 @@ type Swipe = {
 };
 
 export function useSwipe({ cellSize }: { cellSize: number | undefined }) {
-  const state = useGameState();
+  const {
+    state: { board },
+  } = useGameContext();
   const [swipe, setSwipe] = useState<undefined | Swipe>(undefined);
 
-  const x = state?.x;
+  const x = board?.x;
   const onSwipeStart = useCallback(() => {
     if (typeof x !== "number") return;
     setSwipe({

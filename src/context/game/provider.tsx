@@ -1,16 +1,27 @@
 import React, { PropsWithChildren, useEffect, useReducer } from "react";
 
+import { GameStatus } from "@/shared/constants/game";
+
 import { GameActionType } from "./action-types";
 import { gameReducer } from "./reducer";
 import { GameContextValue, GameDispatch } from "./types";
 
+const initialState: GameContextValue = {
+  board: null,
+  cleared: 0,
+  countdown: false,
+  dropping: false,
+  fullRowIndexes: null,
+  status: GameStatus.IDLE,
+};
+
 export const GameContext = React.createContext<{
-  state: GameContextValue | null;
+  state: GameContextValue;
   dispatch: GameDispatch | null;
-}>({ state: null, dispatch: null });
+}>({ state: initialState, dispatch: null });
 
 export function GameProvider(props: PropsWithChildren) {
-  const [state, dispatch] = useReducer(gameReducer, null);
+  const [state, dispatch] = useReducer(gameReducer, initialState);
 
   useEffect(() => {
     dispatch({ type: GameActionType.HYDRATE });

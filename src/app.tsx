@@ -9,10 +9,10 @@ import { Layout } from "@/modules/layout";
 import { GameMenu } from "@/modules/menu";
 import { LOCALE_DEFAULT } from "@/shared/constants/i18n";
 import { ROOT_CLASSNAME } from "@/shared/constants/ui";
-import { TetrisConfig } from "@/shared/types/config";
 
 import "./app.css";
 import styles from "./app.module.css";
+import { TetrisConfig } from "./main";
 
 export default function App(props?: TetrisConfig) {
   const locale = props?.locale || LOCALE_DEFAULT;

@@ -4,18 +4,18 @@ import { Shape, SHAPES } from "@/shared/constants/shape";
 
 import { isEdge } from "./is-edge";
 
-function isCoordsLegal(coords: number[], cells?: GameContextValue["cells"]) {
+function isCoordsLegal(coords: number[], board?: GameContextValue["board"]) {
   for (const coord of coords) {
     // Coord crossed bottom edge
     if (coord > BOARD_AREA_WITH_EDGES) {
       return false;
     }
     // Coord already occupied
-    if (cells?.[coord]) {
+    if (board?.cells?.[coord]) {
       return false;
     }
     // Coord crossed edge
-    if (!cells && isEdge(coord)) {
+    if (!board?.cells && isEdge(coord)) {
       return false;
     }
   }
@@ -29,19 +29,19 @@ type ChangeShapeCoordsPayload = {
   y?: number;
 };
 
-export function getShapeCoords(payload: ChangeShapeCoordsPayload, game: GameBoardState, checkIfLegal = true) {
-  const shape = payload?.shape || game.shape;
-  const x = typeof payload?.x === "number" ? payload.x : game.x;
-  const y = typeof payload?.y === "number" ? payload.y : game.y;
-  const rotate = typeof payload?.rotate === "number" ? payload.rotate : game.rotate;
+export function getShapeCoords(payload: ChangeShapeCoordsPayload, board: GameBoardState, checkIfLegal = true) {
+  const shape = payload?.shape || board.shape;
+  const x = typeof payload?.x === "number" ? payload.x : board.x;
+  const y = typeof payload?.y === "number" ? payload.y : board.y;
+  const rotate = typeof payload?.rotate === "number" ? payload.rotate : board.rotate;
 
   const coords = SHAPES[shape][rotate];
   const coordsModified = coords.map((coord) => coord + x + y * BOARD_WIDTH_WITH_EDGES);
 
   if (!checkIfLegal) return coordsModified;
-  return isCoordsLegal(coordsModified, game.cells) ? coordsModified : null;
+  return isCoordsLegal(coordsModified, board) ? coordsModified : null;
 }
 
-export function getShapeCoordsAlways(payload: ChangeShapeCoordsPayload, game: GameContextValue) {
-  return getShapeCoords(payload, game, false) as number[];
+export function getShapeCoordsAlways(payload: ChangeShapeCoordsPayload, board: GameBoardState) {
+  return getShapeCoords(payload, board, false) as number[];
 }

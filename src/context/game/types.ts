@@ -7,21 +7,22 @@ export type BoardCellValue = Shape | ShapeOther | null;
 
 export type GameBoardState = {
   cells: BoardCellValue[];
+  hint: number[] | null;
   rotate: number;
+  rotateNext: number;
   shape: Shape;
+  shapeNext: Shape;
   y: number;
   x: number;
 };
 
-export type GameContextValue = GameBoardState & {
+export type GameContextValue = {
+  board: GameBoardState | null;
   cleared: number;
   countdown: boolean;
   dropping: boolean;
   fullRowIndexes: number[] | null;
-  hint: number[] | null;
   status: GameStatus;
-  shapeNext: Shape;
-  rotateNext: number;
 };
 
 export type GameDispatch = React.Dispatch<GameAction>;

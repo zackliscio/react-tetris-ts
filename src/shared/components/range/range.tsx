@@ -23,6 +23,8 @@ export function Range({ className, onChange, min, max, value }: RangeProps) {
     [max, value]
   );
 
+  console.log("range value", value);
+
   return (
     <div className={["flex items-center gap-4", className].filter(Boolean).join(" ")}>
       <RangeLib

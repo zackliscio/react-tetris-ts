@@ -1,8 +1,9 @@
 {
   "name": "react-tetris-ts",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "type": "module",
-  "main": "dist/main.umd.cjs",
+  "files": ["dist"],
+  "main": "./dist/main.umd.cjs",
   "module": "./dist/main.js",
   "exports": {
     ".": {

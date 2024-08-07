@@ -1,2 +1,7 @@
 *
-!dist
+!dist/main.js
+!dist/main.umd.cjs
+!COPYING
+!index.html
+!package.json
+!README.md

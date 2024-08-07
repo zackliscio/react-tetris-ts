@@ -26,12 +26,22 @@ export function getInitialCells(initialRows: number) {
 type Params = {
   countdown: boolean;
   initialRows: number;
+  rotate: number;
+  rotateNext: number;
+  shape: Shape;
   shapeNext: Shape;
 };
 
-export function getInitialGame({ countdown, initialRows, shapeNext }: Params): GameContextValue {
+export function getInitialGame({
+  countdown,
+  initialRows,
+  rotate,
+  rotateNext,
+  shape,
+  shapeNext,
+}: Params): GameContextValue {
   const cells = getInitialCells(initialRows);
-  const state = getNextState({ countdown, shapeNext });
+  const state = getNextState({ countdown, rotate, rotateNext, shapeNext, shape });
   const hint = getShapeHint({ ...state, cells });
 
   return {

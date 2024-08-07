@@ -7,6 +7,7 @@ import { getShapeCoords, getShapeCoordsAlways } from "@/shared/utils/get-shape-c
 import { getStateWithHint } from "@/shared/utils/get-shape-hint";
 import { placeShape } from "@/shared/utils/place-shape";
 
+import { getRandomRotate, getRandomShape } from "@/shared/utils/get-random";
 import { GameContextValue } from "../types";
 
 export function tick(state: GameContextValue) {
@@ -33,7 +34,13 @@ export function tick(state: GameContextValue) {
     });
   }
 
-  const stateNext = getNextState({ shapeNext: state.shapeNext });
+  const shapeNext = getRandomShape();
+  const stateNext = getNextState({
+    shape: state.shapeNext,
+    shapeNext,
+    rotate: getRandomRotate(state.shapeNext),
+    rotateNext: getRandomRotate(shapeNext),
+  });
   const currentCoordsValid = getShapeCoords({}, state);
 
   // Placing valid

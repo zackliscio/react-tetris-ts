@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { Range as RangeLib } from "react-range";
 import type { IRenderTrackParams } from "react-range/lib/types";
 
+import { useIsRendered } from "@/shared/hooks/use-is-rendered";
 import { renderThumb, renderTrack as renderTrackEnhanced } from "./render";
 
 type RangeProps = {
@@ -23,10 +24,15 @@ export function Range({ className, onChange, min, max, value }: RangeProps) {
     [max, value]
   );
 
-  console.log("range value", value);
+  // react-range can not position render track properly on SSR
+  const isHidden = !useIsRendered();
 
   return (
-    <div className={["flex items-center gap-4", className].filter(Boolean).join(" ")}>
+    <div
+      className={["flex items-center gap-4", isHidden ? "opacity-0" : "opacity-100", "transition-opacity", className]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <RangeLib
         disabled={!onChange}
         values={[value]}

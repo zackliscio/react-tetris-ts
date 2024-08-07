@@ -11,6 +11,9 @@ const initialState: GameContextValue = getInitialGame({
   countdown: false,
   initialRows: DEFAULT_INITIAL_ROWS,
   // TODO: Generate this randomly, but prevent SSR mismatch error
+  rotate: 0,
+  rotateNext: 0,
+  shape: Shape.Z,
   shapeNext: Shape.S,
 });
 

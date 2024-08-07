@@ -19,7 +19,7 @@ export default function App(props?: TetrisConfig) {
     <IntlProvider messages={messages[locale]} locale="en" defaultLocale={LOCALE_DEFAULT}>
       <AppProvider>
         <GameProvider>
-          <Layout className="bg-background text-text">
+          <Layout className="react-tetris-ts bg-background text-text">
             <div className={styles.root}>
               <Game />
               <GameMenu />

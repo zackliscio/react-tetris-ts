@@ -1,7 +1,5 @@
 *
-!dist/main.js
-!dist/main.umd.cjs
-!dist/src/*
+!dist/*
 !COPYING
 !package.json
 !README.md

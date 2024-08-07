@@ -45,13 +45,13 @@ export function useSwipe({ cellSize }: { cellSize: number | undefined }) {
     },
     [cellSize]
   );
-  const { onDrop, onRotate } = useGameCallbacks();
+  const { onDropStart, onRotate } = useGameCallbacks();
 
   const handlers = useSwipeable({
     onSwipeStart,
     onSwiped,
     onSwiping,
-    onSwipedDown: onDrop,
+    onSwipedDown: onDropStart,
     onTap: onRotate,
     preventScrollOnSwipe: false,
   });

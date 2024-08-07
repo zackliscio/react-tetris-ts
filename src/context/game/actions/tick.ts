@@ -72,6 +72,7 @@ export function tick(state: GameContextValue): GameContextValue {
         y: 0,
       },
       fullRowIndexes: getFullRowIndexes(cells),
+      dropping: false,
     };
   }
 

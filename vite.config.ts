@@ -5,6 +5,13 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    lib: {
+      entry: path.resolve(process.cwd(), "src/main.tsx"),
+      name: "react-tetris-ts",
+      fileName: "main",
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

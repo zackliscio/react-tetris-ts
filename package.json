@@ -1,8 +1,8 @@
 {
   "name": "react-tetris-ts",
-  "private": true,
   "version": "1.0.0-alpha.0",
   "type": "module",
+  "main": "dist/main.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -34,7 +34,7 @@ export function countdownFinished(state: GameContextValue) {
 }
 
 export function restart(state: GameContextValue, payload: { initialRows: number }) {
-  const shape = getRandomShape();
+  const shape = state.board ? state.board.shapeNext : getRandomShape();
   const shapeNext = getRandomShape();
 
   return {

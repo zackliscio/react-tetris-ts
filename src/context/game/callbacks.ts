@@ -10,7 +10,7 @@ export function useGameCallbacks() {
   return useMemo(() => {
     return dispatch
       ? {
-          onDrop: () => dispatch({ type: GameActionType.DROP, payload: true }),
+          onDropStart: () => dispatch({ type: GameActionType.DROP, payload: true }),
           onDropStop: () => dispatch({ type: GameActionType.DROP, payload: false }),
           onFinishedCountdown: () => dispatch({ type: GameActionType.COUNTDOWN_FINISHED }),
           onMove: (payload: 1 | -1) => dispatch({ type: GameActionType.MOVE, payload }),

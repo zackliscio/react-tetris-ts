@@ -8,14 +8,14 @@ export function useKeyboardGame() {
   const {
     state: { status },
   } = useGameContext();
-  const { onDrop, onDropStop, onMove, onPause, onRotate } = useGameCallbacks();
+  const { onDropStart, onDropStop, onMove, onPause, onRotate } = useGameCallbacks();
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (KEYS_PAUSE.includes(e.key)) {
         onPause?.();
       } else if (KEYS_BOTTOM.includes(e.key)) {
-        onDrop?.();
+        onDropStart?.();
       } else if (KEYS_ROTATE.includes(e.key)) {
         onRotate?.();
       } else if (KEYS_LEFT.includes(e.key)) {
@@ -24,7 +24,7 @@ export function useKeyboardGame() {
         onMove?.(1);
       }
     },
-    [onDrop, onMove, onPause, onRotate]
+    [onDropStart, onMove, onPause, onRotate]
   );
   const onKeyUp = useCallback(
     (e: KeyboardEvent) => {

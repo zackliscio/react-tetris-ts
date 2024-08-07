@@ -16,8 +16,8 @@ import { TetrisConfig } from "./main";
 
 export default function App(props?: TetrisConfig) {
   const locale = props?.locale || LOCALE_DEFAULT;
-  const width = props?.width || "100vw";
-  const height = props?.height || "100vh";
+  const width = props?.width || "100svw";
+  const height = props?.height || "100svh";
 
   return (
     <>

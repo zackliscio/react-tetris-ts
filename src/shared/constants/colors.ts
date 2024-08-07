@@ -16,7 +16,6 @@ export const THEME_DARK = {
   shape_t: "#ec4899",
   shape_z: "#eab308",
   shape_full: "#ffffff",
-  shape_hint: "#4b5563",
 };
 
 export const THEME_LIGHT = {
@@ -29,6 +28,5 @@ export const THEME_LIGHT = {
   button_text: "#1f2937",
   control_focus: "#ffffff",
   shape_full: "#000000",
-  shape_hint: "#71717a",
   text: "#1f2937",
 };

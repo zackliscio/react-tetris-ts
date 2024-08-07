@@ -27,7 +27,6 @@ export default {
         shape_t: `var(--shape_t)`,
         shape_z: `var(--shape_z)`,
         shape_full: `var(--shape_full)`,
-        shape_hint: `var(--shape_hint)`,
       },
       flex: {
         '2': '2 2 0%'

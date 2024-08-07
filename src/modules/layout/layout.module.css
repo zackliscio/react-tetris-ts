@@ -1,5 +1,5 @@
 .layout {
-  @apply flex w-screen h-screen;
+  @apply flex w-full h-full;
 }
 
 .board {

@@ -1,6 +1,7 @@
 import { GameAction, GameActionType } from "./action-types";
 import { hydrate } from "./actions/hydrate";
-import { move, rotate } from "./actions/move";
+import { move } from "./actions/move";
+import { rotate } from "./actions/rotate";
 import { countdownFinished, drop, pause, restart, unpause } from "./actions/status";
 import { tick } from "./actions/tick";
 import { GameContextValue } from "./types";

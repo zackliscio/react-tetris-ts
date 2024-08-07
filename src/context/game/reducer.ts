@@ -6,7 +6,13 @@ import { tick } from "./actions/tick";
 import { GameContextValue } from "./types";
 
 export function gameReducer(state: GameContextValue | null, action: GameAction) {
-  if (!state) return state;
+  if (action.type === GameActionType.HYDRATE) {
+    return hydrate();
+  }
+
+  if (!state) {
+    throw new Error(`${GameActionType.HYDRATE} not called.`);
+  }
 
   switch (action.type) {
     case GameActionType.COUNTDOWN_FINISHED: {
@@ -14,9 +20,6 @@ export function gameReducer(state: GameContextValue | null, action: GameAction) 
     }
     case GameActionType.DROP: {
       return drop(state, action.payload);
-    }
-    case GameActionType.HYDRATE: {
-      return hydrate();
     }
     case GameActionType.PAUSE: {
       return pause(state);

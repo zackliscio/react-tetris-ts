@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { Range as RangeLib } from "react-range";
-import type { IRenderTrackParams } from "react-range/lib/types";
+import type { IRenderTrackParams, IThumbProps } from "react-range/lib/types";
 
 import { useIsRendered } from "@/shared/hooks/use-is-rendered";
-import { renderThumb, renderTrack as renderTrackEnhanced } from "./render";
+import { renderThumb as renderThumbEnhanced, renderTrack as renderTrackEnhanced } from "./render";
 
 type RangeProps = {
   className?: string;
@@ -16,6 +16,16 @@ type RangeProps = {
 export function Range({ className, onChange, min, max, value }: RangeProps) {
   const onChangeValue = useCallback((values: number[]) => onChange?.(values[0]), [onChange]);
 
+  // react-range can not position render track properly on SSR
+  const isHidden = !useIsRendered();
+
+  const renderThumb = useCallback(
+    ({ props }: { props: IThumbProps }) => {
+      return renderThumbEnhanced({ props, isHidden });
+    },
+    [isHidden]
+  );
+
   const renderTrack = useCallback(
     ({ props, children }: IRenderTrackParams) => {
       const scale = value / max;
@@ -23,9 +33,6 @@ export function Range({ className, onChange, min, max, value }: RangeProps) {
     },
     [max, value]
   );
-
-  // react-range can not position render track properly on SSR
-  const isHidden = !useIsRendered();
 
   return (
     <div

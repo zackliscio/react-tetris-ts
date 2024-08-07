@@ -7,3 +7,9 @@ export function useGameContext() {
   if (!appContext) throw new Error("Missing GameProvider");
   return appContext;
 }
+
+export function useGameState() {
+  const { state } = useGameContext();
+  if (!state) throw new Error("Missing state in GameProvider - maybe not hydrated?");
+  return state;
+}

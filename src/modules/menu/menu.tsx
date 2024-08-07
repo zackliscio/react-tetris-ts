@@ -1,4 +1,4 @@
-import { useGameContext } from "@/context/game";
+import { useGameState } from "@/context/game";
 import { Board } from "@/shared/components/board";
 import { LightMode } from "@/shared/components/light-mode";
 import { GameStatus } from "@/shared/constants/game";
@@ -16,9 +16,7 @@ import styles from "./menu.module.css";
 const statuses = [GameStatus.IDLE, GameStatus.FINISHED, GameStatus.PAUSED];
 
 export function GameMenu() {
-  const {
-    state: { countdown, status },
-  } = useGameContext();
+  const { countdown, status } = useGameState();
 
   useOnUnpause();
 

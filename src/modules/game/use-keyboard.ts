@@ -1,13 +1,11 @@
 import { useCallback, useEffect } from "react";
 
-import { useGameCallbacks, useGameContext } from "@/context/game";
+import { useGameCallbacks, useGameState } from "@/context/game";
 import { GameStatus } from "@/shared/constants/game";
 import { KEYS_BOTTOM, KEYS_LEFT, KEYS_PAUSE, KEYS_RIGHT, KEYS_ROTATE } from "@/shared/constants/keyboard";
 
 export function useKeyboardGame() {
-  const {
-    state: { status },
-  } = useGameContext();
+  const { status } = useGameState();
   const { onDrop, onDropStop, onMove, onPause, onRotate } = useGameCallbacks();
 
   const onKeyDown = useCallback(

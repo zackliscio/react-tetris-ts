@@ -1,29 +1,31 @@
-import React, { PropsWithChildren, useReducer } from "react";
+import React, { PropsWithChildren, useMemo, useReducer } from "react";
 
 import { DEFAULT_INITIAL_ROWS } from "@/shared/constants/game";
-import { Shape } from "@/shared/constants/shape";
 import { getInitialGame } from "@/shared/utils/get-initial";
-
+import { getRandomRotate, getRandomShape } from "@/shared/utils/get-random";
 import { gameReducer } from "./reducer";
 import { GameContextValue, GameDispatch } from "./types";
 
-const initialState: GameContextValue = getInitialGame({
-  countdown: false,
-  initialRows: DEFAULT_INITIAL_ROWS,
-  // TODO: Generate this randomly, but prevent SSR mismatch error
-  rotate: 0,
-  rotateNext: 0,
-  shape: Shape.Z,
-  shapeNext: Shape.S,
-});
-
 export const GameContext = React.createContext<{
-  state: GameContextValue;
+  state: GameContextValue | null;
   dispatch: GameDispatch | null;
-}>({ state: initialState, dispatch: null });
+}>({ state: null, dispatch: null });
 
 export function GameProvider(props: PropsWithChildren) {
-  const [state, dispatch] = useReducer(gameReducer, { ...initialState });
+  const initialState = useMemo(() => {
+    const shape = getRandomShape();
+    const shapeNext = getRandomShape();
+    return getInitialGame({
+      countdown: false,
+      initialRows: DEFAULT_INITIAL_ROWS,
+      shape,
+      shapeNext,
+      rotate: getRandomRotate(shape),
+      rotateNext: getRandomRotate(shapeNext),
+    });
+  }, []);
+
+  const [state, dispatch] = useReducer(gameReducer, initialState);
 
   return <GameContext.Provider value={{ state, dispatch }}>{props.children}</GameContext.Provider>;
 }

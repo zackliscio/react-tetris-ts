@@ -13,11 +13,16 @@ export function renderTrack({ props, children, scale }: PropsWithChildren<{ prop
   );
 }
 
-export function renderThumb({ props }: { props: IThumbProps }) {
+export function renderThumb({ props, isHidden }: { props: IThumbProps; isHidden: boolean }) {
+  // react-range can not position render track properly on SSR
   return (
     <div
       {...props}
-      className={["w-8 h-8 flex items-center justify-center"].join(" ")}
+      className={[
+        "w-8 h-8 flex items-center justify-center",
+        isHidden ? "opacity-0" : "opacity-100",
+        "transition-opacity",
+      ].join(" ")}
       key={props.key}
       style={props.style}
     >

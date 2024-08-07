@@ -1,13 +1,11 @@
 import { useEffect, useRef } from "react";
 
-import { useGameCallbacks, useGameContext } from "@/context/game";
+import { useGameCallbacks, useGameState } from "@/context/game";
 import { GameStatus } from "@/shared/constants/game";
 import { useSpeed } from "@/shared/hooks/use-speed";
 
 export function useTick() {
-  const {
-    state: { status },
-  } = useGameContext();
+  const { status } = useGameState();
   const { onTick } = useGameCallbacks();
 
   const speedMs = useSpeed();

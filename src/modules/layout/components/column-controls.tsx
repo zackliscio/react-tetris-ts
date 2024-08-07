@@ -1,13 +1,11 @@
-import { useGameContext } from "@/context/game";
+import { useGameState } from "@/context/game";
 import { GameStatus } from "@/shared/constants/game";
 
 import styles from "./column-controls.module.css";
 import { useControls } from "./use-controls";
 
 export function ColumnControls(props: { side: "left" | "right" }) {
-  const {
-    state: { countdown, status },
-  } = useGameContext();
+  const { countdown, status } = useGameState();
   const controls = useControls();
   const { top, bottom } = controls[props.side];
 

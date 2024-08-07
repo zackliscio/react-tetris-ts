@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { useGameContext } from "@/context/game";
+import { useGameState } from "@/context/game";
 import { Board } from "@/shared/components/board";
 import { getBoardCells } from "@/shared/utils/get-board-cells";
 
@@ -9,8 +9,7 @@ import { useKeyboardGame } from "./use-keyboard";
 import { useTick } from "./use-tick";
 
 export const Game = () => {
-  const { state } = useGameContext();
-
+  const state = useGameState();
   const boardCells = useMemo(() => getBoardCells(state), [state]);
 
   useTick();

@@ -1,14 +1,12 @@
 import { useMemo } from "react";
 
-import { useGameContext } from "@/context/game";
+import { useGameState } from "@/context/game";
 import { SPEED_DROPPING_MS, SPEED_INCREASE_MS, SPEED_INITIAL_MS } from "@/shared/constants/score";
 
 import { useLevel } from "./use-level";
 
 export function useSpeed() {
-  const {
-    state: { dropping },
-  } = useGameContext();
+  const { dropping } = useGameState();
 
   const level = useLevel();
 

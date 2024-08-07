@@ -1,10 +1,8 @@
-import { useGameContext } from "@/context/game";
+import { useGameState } from "@/context/game";
 
 import { GameCountdownView } from "./view";
 
 export function GameCountdown() {
-  const {
-    state: { countdown },
-  } = useGameContext();
+  const { countdown } = useGameState();
   return countdown ? <GameCountdownView /> : null;
 }

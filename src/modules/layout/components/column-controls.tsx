@@ -9,7 +9,8 @@ export function ColumnControls(props: { side: "left" | "right" }) {
     state: { countdown, status },
   } = useGameContext();
   const controls = useControls();
-  const { top, bottom } = controls[props.side];
+
+  const move = controls[props.side];
 
   const isPlaying = status === GameStatus.PLAYING;
 
@@ -23,20 +24,28 @@ export function ColumnControls(props: { side: "left" | "right" }) {
       ].join(" ")}
     >
       <button
-        className="flex w-full flex-2 items-center justify-center"
+        className="flex w-full flex-1 items-center justify-center"
         disabled={!isPlaying}
         type="button"
-        onClick={top.onClick}
+        onClick={controls.rotate.onClick}
       >
-        {top.icon}
+        {controls.rotate.icon}
+      </button>
+      <button
+        className={["flex w-full flex-1 items-center justify-center", "border-t border-b border-board"].join(" ")}
+        disabled={!isPlaying}
+        type="button"
+        onClick={move.onClick}
+      >
+        {move.icon}
       </button>
       <button
         className="flex w-full flex-1 items-center justify-center"
         disabled={!isPlaying}
         type="button"
-        onClick={bottom.onClick}
+        onClick={controls.drop.onClick}
       >
-        {bottom.icon}
+        {controls.drop.icon}
       </button>
     </div>
   );

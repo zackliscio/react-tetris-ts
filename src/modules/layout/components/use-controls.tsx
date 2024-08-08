@@ -6,25 +6,21 @@ export function useControls() {
   const { onMoveLeft, onMoveRight, onRotate, onDropStart } = useGameCallbacks();
 
   return {
+    drop: {
+      icon: <IconArrowLeft className="flex w-1/3 transform -rotate-90" />,
+      onClick: onDropStart,
+    },
     left: {
-      top: {
-        icon: <IconArrowLeft className="flex w-1/3" />,
-        onClick: onMoveLeft,
-      },
-      bottom: {
-        icon: <IconRotate className="flex w-1/5" />,
-        onClick: onRotate,
-      },
+      icon: <IconArrowLeft className="flex w-1/3" />,
+      onClick: onMoveLeft,
     },
     right: {
-      top: {
-        icon: <IconArrowLeft className="flex w-1/3 transform rotate-180" />,
-        onClick: onMoveRight,
-      },
-      bottom: {
-        icon: <IconArrowLeft className="flex w-1/3 transform -rotate-90" />,
-        onClick: onDropStart,
-      },
+      icon: <IconArrowLeft className="flex w-1/3 transform rotate-180" />,
+      onClick: onMoveRight,
+    },
+    rotate: {
+      icon: <IconRotate className="flex w-1/5" />,
+      onClick: onRotate,
     },
   };
 }

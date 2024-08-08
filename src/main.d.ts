@@ -4,5 +4,5 @@ export type TetrisConfig = {
   width?: string;
 };
 
-declare function App(props: { config?: Partial<TetrisConfig> }): JSX.Element;
+declare function App(props: Partial<TetrisConfig>): JSX.Element;
 export default App;

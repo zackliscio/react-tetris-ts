@@ -15,5 +15,5 @@ export const Game = () => {
   useTick();
   useKeyboardGame();
 
-  return <Board cells={boardCells} classNameBoard="bg-board" overlay={<SwipeOverlay />} />;
+  return <Board cells={boardCells} classNameBoard="bg-board" debug overlay={<SwipeOverlay />} />;
 };

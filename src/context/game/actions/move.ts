@@ -12,12 +12,16 @@ export function move(state: GameContextValue, payload: number): GameContextValue
   const coords = getShapeCoords({ x: xCurrent }, state.board);
   if (!coords) return state;
 
+  const board = {
+    ...state.board,
+    x: xCurrent,
+  };
+
   return {
     ...state,
     board: {
-      ...state.board,
-      hint: getShapeHint(state.board),
-      x: xCurrent,
+      ...board,
+      hint: getShapeHint(board),
     },
   };
 }

@@ -29,7 +29,8 @@ export function useSwipe({ cellSize }: { cellSize: number | undefined }) {
     setSwipe(undefined);
   }, []);
   const onSwiping = useCallback(
-    ({ absX, absY, deltaX }: SwipeEventData) => {
+    ({ absX, absY, deltaX, event }: SwipeEventData) => {
+      event.preventDefault();
       setSwipe((old) => {
         if (!old || !cellSize) return undefined;
         if (absX < absY) return undefined;
@@ -53,7 +54,7 @@ export function useSwipe({ cellSize }: { cellSize: number | undefined }) {
     onSwiping,
     onSwipedDown: onDropStart,
     onTap: onRotate,
-    preventScrollOnSwipe: false,
+    preventScrollOnSwipe: true,
   });
 
   return {

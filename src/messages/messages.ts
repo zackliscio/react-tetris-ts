@@ -1,5 +1,5 @@
 const enMessages = {
-  authorLabel: "Author",
+  authorLabel: "Made by",
   authorEmoji: "👨‍💻",
   authorText: "Check me out at { link }",
   initialLevel: "Initial level",
@@ -13,7 +13,7 @@ const enMessages = {
 };
 
 const csMessages = {
-  authorLabel: "Autor",
+  authorLabel: "Vytvořeno",
   authorEmoji: "👨‍💻",
   authorText: "Můj profil { link }",
   initialLevel: "Vstupní úroveň",

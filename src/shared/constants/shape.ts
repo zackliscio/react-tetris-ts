@@ -70,5 +70,5 @@ export const SHAPES_CLASSNAMES = {
   [ShapeOther.INITIAL]: "",
   [ShapeOther.FULL]: "bg-shape_full opacity-50",
   [ShapeOther.EDGE]: "bg-shape_edge",
-  [ShapeOther.HINT]: "bg-shape_full opacity-80",
+  [ShapeOther.HINT]: "touch:bg-shape_full opacity-50",
 } as const;

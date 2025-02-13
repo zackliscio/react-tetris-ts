@@ -1,4 +1,3 @@
-import { Author } from "@/shared/components/author/author";
 import { Board } from "@/shared/components/board";
 import { LightMode } from "@/shared/components/light-mode";
 import { GameStatus } from "@/shared/constants/game";
@@ -54,7 +53,7 @@ export function GameMenu() {
         >
           <MenuScore className="short:flex hidden" />
           <LightMode />
-          <Author />
+
         </div>
       </div>
     </Board>
